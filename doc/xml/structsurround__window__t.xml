@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structsurround__window__t" kind="struct" language="C++" prot="public">
+    <compoundname>surround_window_t</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsurround__window__t_1aee3d0c553cf45ddbafe995bdf6702ebb" prot="public" static="no" mutable="no">
+        <type>xcb_window_t *</type>
+        <definition>xcb_window_t* surround_window_t::window</definition>
+        <argsstring></argsstring>
+        <name>window</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="22" column="14" bodyfile="libsurround.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsurround__window__t_1ab92f56efdf55c18eb8b13d23669e73d2" prot="public" static="no" mutable="no">
+        <type>xcb_screen_t *</type>
+        <definition>xcb_screen_t* surround_window_t::screen</definition>
+        <argsstring></argsstring>
+        <name>screen</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="23" column="14" bodyfile="libsurround.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsurround__window__t_1ad0a5e720f9b4cb9189529a9a4ebcb988" prot="public" static="no" mutable="no">
+        <type>xcb_connection_t *</type>
+        <definition>xcb_connection_t* surround_window_t::surround_connection</definition>
+        <argsstring></argsstring>
+        <name>surround_connection</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="24" column="18" bodyfile="libsurround.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="libsurround.h" line="21" column="1" bodyfile="libsurround.h" bodystart="21" bodyend="26"/>
+    <listofallmembers>
+      <member refid="structsurround__window__t_1ab92f56efdf55c18eb8b13d23669e73d2" prot="public" virt="non-virtual"><scope>surround_window_t</scope><name>screen</name></member>
+      <member refid="structsurround__window__t_1ad0a5e720f9b4cb9189529a9a4ebcb988" prot="public" virt="non-virtual"><scope>surround_window_t</scope><name>surround_connection</name></member>
+      <member refid="structsurround__window__t_1aee3d0c553cf45ddbafe995bdf6702ebb" prot="public" virt="non-virtual"><scope>surround_window_t</scope><name>window</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,304 @@
+\hypertarget{libsurround_8h}{}\doxysection{libsurround.\+h File Reference}
+\label{libsurround_8h}\index{libsurround.h@{libsurround.h}}
+{\ttfamily \#include $<$xcb/xcb.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}ename.\+c.\+inc\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsurround__window__t}{surround\+\_\+window\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structbmp__image__t}{bmp\+\_\+image\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{libsurround_8h_af3b86d961da0a3575b4f99c9ffaf01fd}\label{libsurround_8h_af3b86d961da0a3575b4f99c9ffaf01fd}} 
+\#define {\bfseries u8}~uint8\+\_\+t
+\item 
+\mbox{\Hypertarget{libsurround_8h_a2b19d553290a8d4a083d3c03280ea800}\label{libsurround_8h_a2b19d553290a8d4a083d3c03280ea800}} 
+\#define {\bfseries u16}~uint16\+\_\+t
+\item 
+\mbox{\Hypertarget{libsurround_8h_a332ccd83dfe2973e6cb2b61e4f3ab7e6}\label{libsurround_8h_a332ccd83dfe2973e6cb2b61e4f3ab7e6}} 
+\#define {\bfseries u32}~uint32\+\_\+t
+\item 
+\mbox{\Hypertarget{libsurround_8h_a969c7c1ebb4f70581e040a3034b14ee0}\label{libsurround_8h_a969c7c1ebb4f70581e040a3034b14ee0}} 
+\#define {\bfseries u64}~uint64\+\_\+t
+\item 
+\mbox{\Hypertarget{libsurround_8h_a8b1c3ba7ed71c46505556d43a9bee9e1}\label{libsurround_8h_a8b1c3ba7ed71c46505556d43a9bee9e1}} 
+\#define {\bfseries i8}~int8\+\_\+t
+\item 
+\mbox{\Hypertarget{libsurround_8h_a3e01dd59d72c4919aa21a46fa5299e23}\label{libsurround_8h_a3e01dd59d72c4919aa21a46fa5299e23}} 
+\#define {\bfseries i16}~int16\+\_\+t
+\item 
+\mbox{\Hypertarget{libsurround_8h_a832509ea197065489f1d60b6d7958cbf}\label{libsurround_8h_a832509ea197065489f1d60b6d7958cbf}} 
+\#define {\bfseries i32}~int32\+\_\+t
+\item 
+\mbox{\Hypertarget{libsurround_8h_aa777e5139adfca31612ec04bc2b26845}\label{libsurround_8h_aa777e5139adfca31612ec04bc2b26845}} 
+\#define {\bfseries i64}~int64\+\_\+t
+\item 
+\mbox{\Hypertarget{libsurround_8h_a801633b6db82925cdfca8af054a9c89d}\label{libsurround_8h_a801633b6db82925cdfca8af054a9c89d}} 
+\#define {\bfseries curr}(fd)~lseek(fd,0,SEEK\+\_\+\+CUR);
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{libsurround_8h_a936e01dfb79bc88fd464915524f57349}\label{libsurround_8h_a936e01dfb79bc88fd464915524f57349}} 
+typedef int {\bfseries sur\+\_\+file\+\_\+t}
+\item 
+\mbox{\Hypertarget{libsurround_8h_a0edf654e9da1a5dcadaab006fbd4166b}\label{libsurround_8h_a0edf654e9da1a5dcadaab006fbd4166b}} 
+typedef uint32\+\_\+t {\bfseries rgb\+\_\+color\+\_\+t}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{libsurround_8h_af6a258d8f3ee5206d682d799316314b1}\label{libsurround_8h_af6a258d8f3ee5206d682d799316314b1}} 
+enum \mbox{\hyperlink{libsurround_8h_af6a258d8f3ee5206d682d799316314b1}{bool}} \{ {\bfseries false}
+, {\bfseries true}
+ \}
+\begin{DoxyCompactList}\small\item\em bool enum type; defines false as 0 and true as 1 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{libsurround_8h_ab1dbf48533ef38b54674ee291062b493}\label{libsurround_8h_ab1dbf48533ef38b54674ee291062b493}} 
+int {\bfseries create\+\_\+window} (\mbox{\hyperlink{structsurround__window__t}{surround\+\_\+window\+\_\+t}} $\ast$win)
+\item 
+\mbox{\Hypertarget{libsurround_8h_a987146d5f78326f51a94da0b4e3e8f48}\label{libsurround_8h_a987146d5f78326f51a94da0b4e3e8f48}} 
+int {\bfseries free\+\_\+window} ()
+\item 
+\mbox{\Hypertarget{libsurround_8h_aab4a45a1dcac65817236b6312a105734}\label{libsurround_8h_aab4a45a1dcac65817236b6312a105734}} 
+int {\bfseries drawer\+\_\+init} ()
+\item 
+\mbox{\Hypertarget{libsurround_8h_ab5fb3410651eee48dc8d7e1dda20e797}\label{libsurround_8h_ab5fb3410651eee48dc8d7e1dda20e797}} 
+int {\bfseries drawer\+\_\+exit} ()
+\item 
+\mbox{\Hypertarget{libsurround_8h_abd9a2e4bc36881ba1f05bdb596079629}\label{libsurround_8h_abd9a2e4bc36881ba1f05bdb596079629}} 
+int {\bfseries map\+\_\+window} ()
+\item 
+\mbox{\Hypertarget{libsurround_8h_ad93fca4f25d4b1e2f813b98f086656d6}\label{libsurround_8h_ad93fca4f25d4b1e2f813b98f086656d6}} 
+int {\bfseries unmap\+\_\+window} ()
+\item 
+void \mbox{\hyperlink{libsurround_8h_ad83bc66851be4582ec97ba670a95fa0a}{err\+\_\+exit}} (const char $\ast$format,...)
+\begin{DoxyCompactList}\small\item\em prints an error message and exits with EXIT\+\_\+\+FAILURE \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{libsurround_8h_a52f34996467785cd2b6e3011419ea8b8}{err\+\_\+exit\+\_\+alt}} (const char $\ast$format,...)
+\begin{DoxyCompactList}\small\item\em prints an error message and exits with EXIT\+\_\+\+FAILURE without calling exit handlers \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{libsurround_8h_aad09973f8c65cdb87f4950d0e23f875a}{err\+\_\+msg}} (const char $\ast$format,...)
+\begin{DoxyCompactList}\small\item\em prints an error message \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{libsurround_8h_afe962daccb7bdeb84f538e12bfd036d2}{usage\+\_\+err}} (const char $\ast$format,...)
+\begin{DoxyCompactList}\small\item\em used to inform user of error in command-\/line argument usage \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{libsurround_8h_a5be980d974668366d9775ce81766f0b2}{filename\+\_\+from\+\_\+pathname}} (const char $\ast$pathname, int len)
+\begin{DoxyCompactList}\small\item\em gets a filename from a pathname allocates a string containing the part of the string in pathname after all the \textquotesingle{}/\textquotesingle{} characters ex\+: given pathname \char`\"{}dir1/dir2/dir3/file1\char`\"{} will return \char`\"{}file1\char`\"{} TODO\+: make it work with \textquotesingle{}\textbackslash{}\textquotesingle{} \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{libsurround_8h_a3c67844981c073af4eb25de4ed7ae649}{bmp\+\_\+image\+\_\+get\+\_\+width}} (\mbox{\hyperlink{structbmp__image__t}{bmp\+\_\+image\+\_\+t}} image)
+\begin{DoxyCompactList}\small\item\em get width of image \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{libsurround_8h_a7f0fbea38f0d1302d6a2d0ac4c741ed1}{bmp\+\_\+image\+\_\+get\+\_\+height}} (\mbox{\hyperlink{structbmp__image__t}{bmp\+\_\+image\+\_\+t}} image)
+\begin{DoxyCompactList}\small\item\em get height of image \end{DoxyCompactList}\item 
+rgb\+\_\+color\+\_\+t \mbox{\hyperlink{libsurround_8h_adc4683ee7e3dc8a5b62e54e18ea85404}{bmp\+\_\+image\+\_\+get\+\_\+pixel}} (uint32\+\_\+t x, uint32\+\_\+t y, \mbox{\hyperlink{structbmp__image__t}{bmp\+\_\+image\+\_\+t}} image)
+\begin{DoxyCompactList}\small\item\em get color in rgb of given pixel of given image \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{libsurround_8h_a1f7c29a78173cd1afa73bf963d7d8e59}{set\+\_\+pixel}} (uint32\+\_\+t x, uint32\+\_\+t y, rgb\+\_\+color\+\_\+t color, \mbox{\hyperlink{structbmp__image__t}{bmp\+\_\+image\+\_\+t}} image)
+\begin{DoxyCompactList}\small\item\em set a pixel to a given color in a given image \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structbmp__image__t}{bmp\+\_\+image\+\_\+t}} \mbox{\hyperlink{libsurround_8h_a00f23cd2628837bee35cbcfee9e69065}{create\+\_\+bmp}} (const char $\ast$filename, uint32\+\_\+t width, uint32\+\_\+t height, uint32\+\_\+t xres, uint32\+\_\+t yres)
+\begin{DoxyCompactList}\small\item\em create and return a bmp file \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{libsurround_8h_a7f0fbea38f0d1302d6a2d0ac4c741ed1}\label{libsurround_8h_a7f0fbea38f0d1302d6a2d0ac4c741ed1}} 
+\index{libsurround.h@{libsurround.h}!bmp\_image\_get\_height@{bmp\_image\_get\_height}}
+\index{bmp\_image\_get\_height@{bmp\_image\_get\_height}!libsurround.h@{libsurround.h}}
+\doxysubsubsection{\texorpdfstring{bmp\_image\_get\_height()}{bmp\_image\_get\_height()}}
+{\footnotesize\ttfamily unsigned int bmp\+\_\+image\+\_\+get\+\_\+height (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbmp__image__t}{bmp\+\_\+image\+\_\+t}}}]{image }\end{DoxyParamCaption})}
+
+
+
+get height of image 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & image to get height of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+height on success, -\/1 on failure with errno set accordingly 
+\end{DoxyReturn}
+\mbox{\Hypertarget{libsurround_8h_adc4683ee7e3dc8a5b62e54e18ea85404}\label{libsurround_8h_adc4683ee7e3dc8a5b62e54e18ea85404}} 
+\index{libsurround.h@{libsurround.h}!bmp\_image\_get\_pixel@{bmp\_image\_get\_pixel}}
+\index{bmp\_image\_get\_pixel@{bmp\_image\_get\_pixel}!libsurround.h@{libsurround.h}}
+\doxysubsubsection{\texorpdfstring{bmp\_image\_get\_pixel()}{bmp\_image\_get\_pixel()}}
+{\footnotesize\ttfamily rgb\+\_\+color\+\_\+t bmp\+\_\+image\+\_\+get\+\_\+pixel (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{x,  }\item[{uint32\+\_\+t}]{y,  }\item[{\mbox{\hyperlink{structbmp__image__t}{bmp\+\_\+image\+\_\+t}}}]{image }\end{DoxyParamCaption})}
+
+
+
+get color in rgb of given pixel of given image 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & x-\/coordinate of pixel \\
+\hline
+{\em y} & y-\/coordinate of pixel \\
+\hline
+{\em image} & image to get pixel from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+rgb\+\_\+color\+\_\+t with first byte as red value, second as green, third as blue, -\/1 on failure with errno set accordingly 
+\end{DoxyReturn}
+\mbox{\Hypertarget{libsurround_8h_a3c67844981c073af4eb25de4ed7ae649}\label{libsurround_8h_a3c67844981c073af4eb25de4ed7ae649}} 
+\index{libsurround.h@{libsurround.h}!bmp\_image\_get\_width@{bmp\_image\_get\_width}}
+\index{bmp\_image\_get\_width@{bmp\_image\_get\_width}!libsurround.h@{libsurround.h}}
+\doxysubsubsection{\texorpdfstring{bmp\_image\_get\_width()}{bmp\_image\_get\_width()}}
+{\footnotesize\ttfamily unsigned int bmp\+\_\+image\+\_\+get\+\_\+width (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbmp__image__t}{bmp\+\_\+image\+\_\+t}}}]{image }\end{DoxyParamCaption})}
+
+
+
+get width of image 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & image to get width of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+width on success, -\/1 on failure with errno set accordingly 
+\end{DoxyReturn}
+\mbox{\Hypertarget{libsurround_8h_a00f23cd2628837bee35cbcfee9e69065}\label{libsurround_8h_a00f23cd2628837bee35cbcfee9e69065}} 
+\index{libsurround.h@{libsurround.h}!create\_bmp@{create\_bmp}}
+\index{create\_bmp@{create\_bmp}!libsurround.h@{libsurround.h}}
+\doxysubsubsection{\texorpdfstring{create\_bmp()}{create\_bmp()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structbmp__image__t}{bmp\+\_\+image\+\_\+t}} create\+\_\+bmp (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename,  }\item[{uint32\+\_\+t}]{width,  }\item[{uint32\+\_\+t}]{height,  }\item[{uint32\+\_\+t}]{xres,  }\item[{uint32\+\_\+t}]{yres }\end{DoxyParamCaption})}
+
+
+
+create and return a bmp file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & filename of bmp file to be created \\
+\hline
+{\em width} & width of image to be stored in bmp \\
+\hline
+{\em height} & height of image to be stored in bmp \\
+\hline
+{\em xres} & x resolution of image to be stored in bmp \\
+\hline
+{\em yres} & y resolution of image to be stored in bmp \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+file descriptor of image file or -\/1 on failure with errno set accordingly 
+\end{DoxyReturn}
+\mbox{\Hypertarget{libsurround_8h_ad83bc66851be4582ec97ba670a95fa0a}\label{libsurround_8h_ad83bc66851be4582ec97ba670a95fa0a}} 
+\index{libsurround.h@{libsurround.h}!err\_exit@{err\_exit}}
+\index{err\_exit@{err\_exit}!libsurround.h@{libsurround.h}}
+\doxysubsubsection{\texorpdfstring{err\_exit()}{err\_exit()}}
+{\footnotesize\ttfamily void err\+\_\+exit (\begin{DoxyParamCaption}\item[{const char $\ast$}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+prints an error message and exits with EXIT\+\_\+\+FAILURE 
+
+
+\begin{DoxyParams}{Parameters}
+{\em format} & a format string to be printed(no newline required) \\
+\hline
+{\em ...} & values to be formatted into output string \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{libsurround_8h_a52f34996467785cd2b6e3011419ea8b8}\label{libsurround_8h_a52f34996467785cd2b6e3011419ea8b8}} 
+\index{libsurround.h@{libsurround.h}!err\_exit\_alt@{err\_exit\_alt}}
+\index{err\_exit\_alt@{err\_exit\_alt}!libsurround.h@{libsurround.h}}
+\doxysubsubsection{\texorpdfstring{err\_exit\_alt()}{err\_exit\_alt()}}
+{\footnotesize\ttfamily void err\+\_\+exit\+\_\+alt (\begin{DoxyParamCaption}\item[{const char $\ast$}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+prints an error message and exits with EXIT\+\_\+\+FAILURE without calling exit handlers 
+
+
+\begin{DoxyParams}{Parameters}
+{\em format} & a format string to be printed(no newline required) \\
+\hline
+{\em ...} & values to be formatted into output string \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{libsurround_8h_aad09973f8c65cdb87f4950d0e23f875a}\label{libsurround_8h_aad09973f8c65cdb87f4950d0e23f875a}} 
+\index{libsurround.h@{libsurround.h}!err\_msg@{err\_msg}}
+\index{err\_msg@{err\_msg}!libsurround.h@{libsurround.h}}
+\doxysubsubsection{\texorpdfstring{err\_msg()}{err\_msg()}}
+{\footnotesize\ttfamily void err\+\_\+msg (\begin{DoxyParamCaption}\item[{const char $\ast$}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+prints an error message 
+
+
+\begin{DoxyParams}{Parameters}
+{\em format} & a format string to be printed(no newline required) \\
+\hline
+{\em ...} & values to be formatted into output string \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{libsurround_8h_a5be980d974668366d9775ce81766f0b2}\label{libsurround_8h_a5be980d974668366d9775ce81766f0b2}} 
+\index{libsurround.h@{libsurround.h}!filename\_from\_pathname@{filename\_from\_pathname}}
+\index{filename\_from\_pathname@{filename\_from\_pathname}!libsurround.h@{libsurround.h}}
+\doxysubsubsection{\texorpdfstring{filename\_from\_pathname()}{filename\_from\_pathname()}}
+{\footnotesize\ttfamily char $\ast$ filename\+\_\+from\+\_\+pathname (\begin{DoxyParamCaption}\item[{const char $\ast$}]{pathname,  }\item[{int}]{len }\end{DoxyParamCaption})}
+
+
+
+gets a filename from a pathname allocates a string containing the part of the string in pathname after all the \textquotesingle{}/\textquotesingle{} characters ex\+: given pathname \char`\"{}dir1/dir2/dir3/file1\char`\"{} will return \char`\"{}file1\char`\"{} TODO\+: make it work with \textquotesingle{}\textbackslash{}\textquotesingle{} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pathname} & pathname to get filename from \\
+\hline
+{\em len} & length of param pathname; for most use cases just set this to strlen(pathname) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a dynamically allocated string containing the filename 
+\end{DoxyReturn}
+\mbox{\Hypertarget{libsurround_8h_a1f7c29a78173cd1afa73bf963d7d8e59}\label{libsurround_8h_a1f7c29a78173cd1afa73bf963d7d8e59}} 
+\index{libsurround.h@{libsurround.h}!set\_pixel@{set\_pixel}}
+\index{set\_pixel@{set\_pixel}!libsurround.h@{libsurround.h}}
+\doxysubsubsection{\texorpdfstring{set\_pixel()}{set\_pixel()}}
+{\footnotesize\ttfamily int set\+\_\+pixel (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{x,  }\item[{uint32\+\_\+t}]{y,  }\item[{rgb\+\_\+color\+\_\+t}]{color,  }\item[{\mbox{\hyperlink{structbmp__image__t}{bmp\+\_\+image\+\_\+t}}}]{image }\end{DoxyParamCaption})}
+
+
+
+set a pixel to a given color in a given image 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & x-\/coordinate of pixel \\
+\hline
+{\em y} & y-\/coordinate of pixel \\
+\hline
+{\em color} & color to set pixel to \\
+\hline
+{\em image} & image to set pixel of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 on failure with errno set accordingly 
+\end{DoxyReturn}
+\mbox{\Hypertarget{libsurround_8h_afe962daccb7bdeb84f538e12bfd036d2}\label{libsurround_8h_afe962daccb7bdeb84f538e12bfd036d2}} 
+\index{libsurround.h@{libsurround.h}!usage\_err@{usage\_err}}
+\index{usage\_err@{usage\_err}!libsurround.h@{libsurround.h}}
+\doxysubsubsection{\texorpdfstring{usage\_err()}{usage\_err()}}
+{\footnotesize\ttfamily void usage\+\_\+err (\begin{DoxyParamCaption}\item[{const char $\ast$}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+used to inform user of error in command-\/line argument usage 
+
+
+\begin{DoxyParams}{Parameters}
+{\em format} & a format string to be printed(newline required) \\
+\hline
+{\em ...} & values to be formatted into the output string \\
+\hline
+\end{DoxyParams}

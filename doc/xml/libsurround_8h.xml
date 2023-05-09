@@ -1,0 +1,908 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="libsurround_8h" kind="file" language="C++">
+    <compoundname>libsurround.h</compoundname>
+    <includes local="no">xcb/xcb.h</includes>
+    <includes local="no">stddef.h</includes>
+    <includes local="no">stdint.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">unistd.h</includes>
+    <includes local="no">sys/stat.h</includes>
+    <includes local="no">fcntl.h</includes>
+    <includes refid="ename_8c_8inc" local="yes">ename.c.inc</includes>
+    <incdepgraph>
+      <node id="7">
+        <label>sys/stat.h</label>
+      </node>
+      <node id="1">
+        <label>libsurround.h</label>
+        <link refid="libsurround_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>stdint.h</label>
+      </node>
+      <node id="8">
+        <label>fcntl.h</label>
+      </node>
+      <node id="2">
+        <label>xcb/xcb.h</label>
+      </node>
+      <node id="3">
+        <label>stddef.h</label>
+      </node>
+      <node id="6">
+        <label>unistd.h</label>
+      </node>
+      <node id="5">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structsurround__window__t" prot="public">surround_window_t</innerclass>
+    <innerclass refid="structbmp__image__t" prot="public">bmp_image_t</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="libsurround_8h_1af3b86d961da0a3575b4f99c9ffaf01fd" prot="public" static="no">
+        <name>u8</name>
+        <initializer>uint8_t</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="10" column="9" bodyfile="libsurround.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="libsurround_8h_1a2b19d553290a8d4a083d3c03280ea800" prot="public" static="no">
+        <name>u16</name>
+        <initializer>uint16_t</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="11" column="9" bodyfile="libsurround.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="libsurround_8h_1a332ccd83dfe2973e6cb2b61e4f3ab7e6" prot="public" static="no">
+        <name>u32</name>
+        <initializer>uint32_t</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="12" column="9" bodyfile="libsurround.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="libsurround_8h_1a969c7c1ebb4f70581e040a3034b14ee0" prot="public" static="no">
+        <name>u64</name>
+        <initializer>uint64_t</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="13" column="9" bodyfile="libsurround.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="libsurround_8h_1a8b1c3ba7ed71c46505556d43a9bee9e1" prot="public" static="no">
+        <name>i8</name>
+        <initializer>int8_t</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="14" column="9" bodyfile="libsurround.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="libsurround_8h_1a3e01dd59d72c4919aa21a46fa5299e23" prot="public" static="no">
+        <name>i16</name>
+        <initializer>int16_t</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="15" column="9" bodyfile="libsurround.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="libsurround_8h_1a832509ea197065489f1d60b6d7958cbf" prot="public" static="no">
+        <name>i32</name>
+        <initializer>int32_t</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="16" column="9" bodyfile="libsurround.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="libsurround_8h_1aa777e5139adfca31612ec04bc2b26845" prot="public" static="no">
+        <name>i64</name>
+        <initializer>int64_t</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="17" column="9" bodyfile="libsurround.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="libsurround_8h_1a801633b6db82925cdfca8af054a9c89d" prot="public" static="no">
+        <name>curr</name>
+        <param><defname>fd</defname></param>
+        <initializer>lseek(fd,0,SEEK_CUR);</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="50" column="9" bodyfile="libsurround.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="libsurround_8h_1af6a258d8f3ee5206d682d799316314b1" prot="public" static="no" strong="no">
+        <type></type>
+        <name>bool</name>
+        <enumvalue id="libsurround_8h_1af6a258d8f3ee5206d682d799316314b1ae9de385ef6fe9bf3360d1038396b884c" prot="public">
+          <name>false</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="libsurround_8h_1af6a258d8f3ee5206d682d799316314b1a08f175a5505a10b9ed657defeb050e4b" prot="public">
+          <name>true</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>bool enum type; defines false as 0 and true as 1 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="48" column="1" bodyfile="libsurround.h" bodystart="48" bodyend="48"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="libsurround_8h_1a936e01dfb79bc88fd464915524f57349" prot="public" static="no">
+        <type>int</type>
+        <definition>typedef int sur_file_t</definition>
+        <argsstring></argsstring>
+        <name>sur_file_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="34" column="13" bodyfile="libsurround.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="libsurround_8h_1a0edf654e9da1a5dcadaab006fbd4166b" prot="public" static="no">
+        <type>uint32_t</type>
+        <definition>typedef uint32_t rgb_color_t</definition>
+        <argsstring></argsstring>
+        <name>rgb_color_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="35" column="18" bodyfile="libsurround.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="libsurround_8h_1ab1dbf48533ef38b54674ee291062b493" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int create_window</definition>
+        <argsstring>(surround_window_t *win)</argsstring>
+        <name>create_window</name>
+        <param>
+          <type><ref refid="structsurround__window__t" kindref="compound">surround_window_t</ref> *</type>
+          <declname>win</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="37" column="5" declfile="libsurround.h" declline="37" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="libsurround_8h_1a987146d5f78326f51a94da0b4e3e8f48" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int free_window</definition>
+        <argsstring>()</argsstring>
+        <name>free_window</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="38" column="5" declfile="libsurround.h" declline="38" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="libsurround_8h_1aab4a45a1dcac65817236b6312a105734" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int drawer_init</definition>
+        <argsstring>()</argsstring>
+        <name>drawer_init</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="40" column="5" declfile="libsurround.h" declline="40" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="libsurround_8h_1ab5fb3410651eee48dc8d7e1dda20e797" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int drawer_exit</definition>
+        <argsstring>()</argsstring>
+        <name>drawer_exit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="41" column="5" declfile="libsurround.h" declline="41" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="libsurround_8h_1abd9a2e4bc36881ba1f05bdb596079629" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int map_window</definition>
+        <argsstring>()</argsstring>
+        <name>map_window</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="43" column="5" declfile="libsurround.h" declline="43" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="libsurround_8h_1ad93fca4f25d4b1e2f813b98f086656d6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int unmap_window</definition>
+        <argsstring>()</argsstring>
+        <name>unmap_window</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="44" column="5" declfile="libsurround.h" declline="44" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="libsurround_8h_1ad83bc66851be4582ec97ba670a95fa0a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void err_exit</definition>
+        <argsstring>(const char *format,...)</argsstring>
+        <name>err_exit</name>
+        <param>
+          <type>const char *</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>...</type>
+        </param>
+        <briefdescription>
+<para>prints an error message and exits with EXIT_FAILURE </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a format string to be printed(no newline required) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>...</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>values to be formatted into output string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="147" column="6" bodyfile="libsurround.h" bodystart="147" bodyend="159" declfile="libsurround.h" declline="57" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="libsurround_8h_1a52f34996467785cd2b6e3011419ea8b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void err_exit_alt</definition>
+        <argsstring>(const char *format,...)</argsstring>
+        <name>err_exit_alt</name>
+        <param>
+          <type>const char *</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>...</type>
+        </param>
+        <briefdescription>
+<para>prints an error message and exits with EXIT_FAILURE without calling exit handlers </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a format string to be printed(no newline required) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>...</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>values to be formatted into output string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="160" column="6" bodyfile="libsurround.h" bodystart="160" bodyend="173" declfile="libsurround.h" declline="65" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="libsurround_8h_1aad09973f8c65cdb87f4950d0e23f875a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void err_msg</definition>
+        <argsstring>(const char *format,...)</argsstring>
+        <name>err_msg</name>
+        <param>
+          <type>const char *</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>...</type>
+        </param>
+        <briefdescription>
+<para>prints an error message </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a format string to be printed(no newline required) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>...</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>values to be formatted into output string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="174" column="6" bodyfile="libsurround.h" bodystart="174" bodyend="185" declfile="libsurround.h" declline="73" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="libsurround_8h_1afe962daccb7bdeb84f538e12bfd036d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void usage_err</definition>
+        <argsstring>(const char *format,...)</argsstring>
+        <name>usage_err</name>
+        <param>
+          <type>const char *</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>...</type>
+        </param>
+        <briefdescription>
+<para>used to inform user of error in command-line argument usage </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a format string to be printed(newline required) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>...</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>values to be formatted into the output string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="186" column="6" bodyfile="libsurround.h" bodystart="186" bodyend="195" declfile="libsurround.h" declline="81" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="libsurround_8h_1a5be980d974668366d9775ce81766f0b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char * filename_from_pathname</definition>
+        <argsstring>(const char *pathname, int len)</argsstring>
+        <name>filename_from_pathname</name>
+        <param>
+          <type>const char *</type>
+          <declname>pathname</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+<para>gets a filename from a pathname allocates a string containing the part of the string in pathname after all the &apos;/&apos; characters ex: given pathname &quot;dir1/dir2/dir3/file1&quot; will return &quot;file1&quot; TODO: make it work with &apos;\&apos; </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pathname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pathname to get filename from </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of param pathname; for most use cases just set this to strlen(pathname) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a dynamically allocated string containing the filename </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="196" column="6" bodyfile="libsurround.h" bodystart="196" bodyend="207" declfile="libsurround.h" declline="93" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="libsurround_8h_1a3c67844981c073af4eb25de4ed7ae649" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>unsigned int bmp_image_get_width</definition>
+        <argsstring>(bmp_image_t image)</argsstring>
+        <name>bmp_image_get_width</name>
+        <param>
+          <type><ref refid="structbmp__image__t" kindref="compound">bmp_image_t</ref></type>
+          <declname>image</declname>
+        </param>
+        <briefdescription>
+<para>get width of image </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>image</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>image to get width of </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>width on success, -1 on failure with errno set accordingly </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="101" column="5" bodyfile="temp.h" bodystart="20" bodyend="25" declfile="libsurround.h" declline="101" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="libsurround_8h_1a7f0fbea38f0d1302d6a2d0ac4c741ed1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>unsigned int bmp_image_get_height</definition>
+        <argsstring>(bmp_image_t image)</argsstring>
+        <name>bmp_image_get_height</name>
+        <param>
+          <type><ref refid="structbmp__image__t" kindref="compound">bmp_image_t</ref></type>
+          <declname>image</declname>
+        </param>
+        <briefdescription>
+<para>get height of image </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>image</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>image to get height of </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>height on success, -1 on failure with errno set accordingly </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="110" column="5" bodyfile="temp.h" bodystart="27" bodyend="32" declfile="libsurround.h" declline="110" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="libsurround_8h_1adc4683ee7e3dc8a5b62e54e18ea85404" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>rgb_color_t</type>
+        <definition>rgb_color_t bmp_image_get_pixel</definition>
+        <argsstring>(uint32_t x, uint32_t y, bmp_image_t image)</argsstring>
+        <name>bmp_image_get_pixel</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type><ref refid="structbmp__image__t" kindref="compound">bmp_image_t</ref></type>
+          <declname>image</declname>
+        </param>
+        <briefdescription>
+<para>get color in rgb of given pixel of given image </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>x-coordinate of pixel </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>y-coordinate of pixel </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>image</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>image to get pixel from </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>rgb_color_t with first byte as red value, second as green, third as blue, -1 on failure with errno set accordingly </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="120" column="13" declfile="libsurround.h" declline="120" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="libsurround_8h_1a1f7c29a78173cd1afa73bf963d7d8e59" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int set_pixel</definition>
+        <argsstring>(uint32_t x, uint32_t y, rgb_color_t color, bmp_image_t image)</argsstring>
+        <name>set_pixel</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>rgb_color_t</type>
+          <declname>color</declname>
+        </param>
+        <param>
+          <type><ref refid="structbmp__image__t" kindref="compound">bmp_image_t</ref></type>
+          <declname>image</declname>
+        </param>
+        <briefdescription>
+<para>set a pixel to a given color in a given image </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>x-coordinate of pixel </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>y-coordinate of pixel </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>color</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>color to set pixel to </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>image</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>image to set pixel of </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>-1 on failure with errno set accordingly </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="131" column="5" declfile="libsurround.h" declline="131" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="libsurround_8h_1a00f23cd2628837bee35cbcfee9e69065" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbmp__image__t" kindref="compound">bmp_image_t</ref></type>
+        <definition>bmp_image_t create_bmp</definition>
+        <argsstring>(const char *filename, uint32_t width, uint32_t height, uint32_t xres, uint32_t yres)</argsstring>
+        <name>create_bmp</name>
+        <param>
+          <type>const char *</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>height</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>xres</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>yres</declname>
+        </param>
+        <briefdescription>
+<para>create and return a bmp file </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>filename of bmp file to be created </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>width</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>width of image to be stored in bmp </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>height</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>height of image to be stored in bmp </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>xres</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>x resolution of image to be stored in bmp </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>yres</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>y resolution of image to be stored in bmp </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>file descriptor of image file or -1 on failure with errno set accordingly </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libsurround.h" line="143" column="13" declfile="libsurround.h" declline="143" declcolumn="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;xcb/xcb.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unistd.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sys/stat.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fcntl.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>u8<sp/>uint8_t</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>u16<sp/>uint16_t</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>u32<sp/>uint32_t</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>u64<sp/>uint64_t</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>i8<sp/>int8_t</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>i16<sp/>int16_t</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>i32<sp/>int32_t</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>i64<sp/>int64_t</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//drawing<sp/>library<sp/>is<sp/>an<sp/>interface<sp/>to<sp/>xcb</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="structsurround__window__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>xcb_window_t<sp/>*window;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>xcb_screen_t<sp/>*screen;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>xcb_connection_t<sp/>*surround_connection;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//will<sp/>add<sp/>more<sp/>later</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">}<ref refid="structsurround__window__t" kindref="compound">surround_window_t</ref>;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="structbmp__image__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>FILE*<sp/>fptr;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">}<ref refid="structbmp__image__t" kindref="compound">bmp_image_t</ref>;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//typedef<sp/>int<sp/>bmp_image_t;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sur_file_t;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>uint32_t<sp/>rgb_color_t;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>create_window(<ref refid="structsurround__window__t" kindref="compound">surround_window_t</ref><sp/>*win</highlight><highlight class="comment">/*params*/</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>free_window(</highlight><highlight class="comment">/*params*/</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>drawer_init(</highlight><highlight class="comment">/*params*/</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>drawer_exit(</highlight><highlight class="comment">/*params*/</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>map_window(</highlight><highlight class="comment">/*params*/</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>unmap_window(</highlight><highlight class="comment">/*params*/</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal">{</highlight><highlight class="keyword">false</highlight><highlight class="normal">,</highlight><highlight class="keyword">true</highlight><highlight class="normal">}<sp/>bool;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>curr(fd)<sp/>lseek(fd,0,SEEK_CUR);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>err_exit(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>format,...);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>err_exit_alt(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>format,...);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>err_msg(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>format,...);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>usage_err(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>format,...);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>filename_from_pathname(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>pathname,</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bmp_image_get_width(<ref refid="structbmp__image__t" kindref="compound">bmp_image_t</ref><sp/>image);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bmp_image_get_height(<ref refid="structbmp__image__t" kindref="compound">bmp_image_t</ref><sp/>image);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal">rgb_color_t<sp/>bmp_image_get_pixel(uint32_t<sp/>x,<sp/>uint32_t<sp/>y,<sp/><ref refid="structbmp__image__t" kindref="compound">bmp_image_t</ref><sp/>image);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>set_pixel(uint32_t<sp/>x,<sp/>uint32_t<sp/>y,<sp/>rgb_color_t<sp/>color,<sp/><ref refid="structbmp__image__t" kindref="compound">bmp_image_t</ref><sp/>image);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><ref refid="structbmp__image__t" kindref="compound">bmp_image_t</ref><sp/>create_bmp(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>filename,<sp/>uint32_t<sp/>width,<sp/>uint32_t<sp/>height,<sp/>uint32_t<sp/>xres,<sp/>uint32_t<sp/>yres);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;ename.c.inc&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>err_exit(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>format,...){</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>va_list<sp/>args;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bufsize=500;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>usermsg[bufsize];</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>va_start(args,format);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>vsnprintf(usermsg,bufsize,format,args);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>va_end(args);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>fprintf(stderr,</highlight><highlight class="stringliteral">&quot;ERROR:<sp/>%s:<sp/>%s<sp/>(%s)\n&quot;</highlight><highlight class="normal">,usermsg,strerror(errno),(errno&gt;0&amp;&amp;errno&lt;=MAX_ENAME)?ename[errno]:</highlight><highlight class="stringliteral">&quot;UNKNOWN&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>fflush(stderr);</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>s=getenv(</highlight><highlight class="stringliteral">&quot;EF_DUMPCORE&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(s!=NULL&amp;&amp;*s!=(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">)0)abort();</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>exit(EXIT_FAILURE);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>err_exit_alt(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>format,...){</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>va_list<sp/>args;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bufsize=500;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>usermsg[bufsize];</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>va_start(args,format);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>vsnprintf(usermsg,bufsize,format,args);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>va_end(args);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>fflush(stdout);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>fprintf(stderr,</highlight><highlight class="stringliteral">&quot;ERROR:<sp/>%s:<sp/>%s<sp/>(%s)\n&quot;</highlight><highlight class="normal">,usermsg,strerror(errno),(errno&gt;0&amp;&amp;errno&lt;=MAX_ENAME)?ename[errno]:</highlight><highlight class="stringliteral">&quot;UNKNOWN&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>fflush(stderr);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>s=getenv(</highlight><highlight class="stringliteral">&quot;EF_DUMPCORE&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(s!=NULL&amp;&amp;*s!=(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">)0)abort();</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>_exit(EXIT_FAILURE);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>err_msg(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>format,...){</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>va_list<sp/>args;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bufsize=500;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>usermsg[bufsize];</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>saved=errno;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>va_start(args,format);</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>vsnprintf(usermsg,bufsize,format,args);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>va_end(args);</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>fprintf(stderr,</highlight><highlight class="stringliteral">&quot;ERROR:<sp/>%s:<sp/>%s<sp/>(%s)\n&quot;</highlight><highlight class="normal">,usermsg,strerror(errno),(errno&gt;0&amp;&amp;errno&lt;=MAX_ENAME)?ename[errno]:</highlight><highlight class="stringliteral">&quot;UNKNOWN&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>fflush(stderr);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>errno=saved;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>usage_err(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>format,...){</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>va_list<sp/>args;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>fflush(stdout);</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/>fprintf(stderr,</highlight><highlight class="stringliteral">&quot;usage:<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>va_start(args,format);</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>vfprintf(stderr,format,args);</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>va_end(args);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>fflush(stderr);</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>exit(EXIT_FAILURE);</highlight></codeline>
+<codeline lineno="195"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>filename_from_pathname(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>pathname,</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len){</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>filename;</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index=0;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i=0;i&lt;len;i++)</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(pathname[i]==</highlight><highlight class="charliteral">&apos;/&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>index=i;</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>filename=malloc((len-index)*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!filename)err_exit(</highlight><highlight class="stringliteral">&quot;malloc&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(index==0<sp/>&amp;&amp;<sp/>*pathname!=</highlight><highlight class="charliteral">&apos;/&apos;</highlight><highlight class="normal">)index=-1;</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i=0;i&lt;len;i++)<sp/>filename[i]=pathname[index+i+1];</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>filename;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="libsurround.h"/>
+  </compounddef>
+</doxygen>

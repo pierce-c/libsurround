@@ -1,9 +1,12 @@
+/// @file
 #pragma once
 #include <xcb/xcb.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 #define u8 uint8_t
 #define u16 uint16_t
@@ -22,10 +25,15 @@ typedef struct{
 	xcb_connection_t *surround_connection;
 	//will add more later
 }surround_window_t;
-typedef struct sur_file{
-	int fd;
-	off_t offset;
-}sur_file_t;
+
+typedef struct{
+	FILE* fptr;
+}bmp_image_t;
+
+//typedef int bmp_image_t;
+
+typedef int sur_file_t;
+typedef uint32_t rgb_color_t;
 
 int create_window(surround_window_t *win/*params*/);
 int free_window(/*params*/);
@@ -35,36 +43,105 @@ int drawer_exit(/*params*/);
 
 int map_window(/*params*/);
 int unmap_window(/*params*/);
-/*
+/**
 	@brief bool enum type; defines false as 0 and true as 1
 */
 typedef enum{false,true} bool;
 
 #define curr(fd) lseek(fd,0,SEEK_CUR);
 
-/*
+/**
  * @brief prints an error message and exits with EXIT_FAILURE
  * @param format a format string to be printed(no newline required) 
  * @param ... values to be formatted into output string
  */
- 
 void err_exit(const char* format,...);
 
 
-
+/**
+ * @brief prints an error message and exits with EXIT_FAILURE without calling exit handlers
+ * @param format a format string to be printed(no newline required)
+ * @param ... values to be formatted into output string
+ */
 void err_exit_alt(const char* format,...);
 
 
-
+/**
+ * @brief prints an error message
+ * @param format a format string to be printed(no newline required)
+ * @param ... values to be formatted into output string
+ */
 void err_msg(const char* format,...);
 
 
-
+/**
+ * @brief used to inform user of error in command-line argument usage
+ * @param format a format string to be printed(newline required)
+ * @param ... values to be formatted into the output string
+ */
 void usage_err(const char* format,...);
 
 
-
+/**
+ * @brief gets a filename from a pathname
+ * allocates a string containing the part of the string in pathname after all the '/' characters
+ * ex: given pathname "dir1/dir2/dir3/file1" will return "file1"
+ * TODO: make it work with '\'
+ * @param pathname pathname to get filename from
+ * @param len length of param pathname; for most use cases just set this to strlen(pathname)
+ * @return a dynamically allocated string containing the filename
+ */
 char* filename_from_pathname(const char* pathname,int len);
+
+
+/**
+ * @brief get width of image
+ * @param image image to get width of
+ * @return width on success, -1 on failure with errno set accordingly
+ */
+int bmp_image_get_width(bmp_image_t image);
+
+
+
+/**
+ * @brief get height of image
+ * @param image image to get height of
+ * @return height on success, -1 on failure with errno set accordingly
+ */
+int bmp_image_get_height(bmp_image_t image);
+
+
+/**
+ * @brief get color in rgb of given pixel of given image
+ * @param x x-coordinate of pixel
+ * @param y y-coordinate of pixel
+ * @param image image to get pixel from
+ * @return rgb_color_t with first byte as red value, second as green, third as blue, -1 on failure with errno set accordingly
+ */
+rgb_color_t bmp_image_get_pixel(uint32_t x, uint32_t y, bmp_image_t image);
+
+
+/**
+ * @brief set a pixel to a given color in a given image
+ * @param x x-coordinate of pixel
+ * @param y y-coordinate of pixel
+ * @param color color to set pixel to
+ * @param image image to set pixel of
+ * @return -1 on failure with errno set accordingly
+ */
+int set_pixel(uint32_t x, uint32_t y, rgb_color_t color, bmp_image_t image);
+
+
+/**
+ * @brief create and return a bmp file
+ * @param filename filename of bmp file to be created
+ * @param width width of image to be stored in bmp
+ * @param height height of image to be stored in bmp
+ * @param xres x resolution of image to be stored in bmp
+ * @param yres y resolution of image to be stored in bmp
+ * @return file descriptor of image file or -1 on failure with errno set accordingly
+ */
+bmp_image_t create_bmp(const char* filename, uint32_t width, uint32_t height, uint32_t xres, uint32_t yres);
 
 
 #include "ename.c.inc"
@@ -129,92 +206,8 @@ char* filename_from_pathname(const char* pathname,int len){
 	for(int i=0;i<len;i++) filename[i]=pathname[index+i+1];
 	return filename;
 }
-#define tell(fd) lseek(fd,0,SEEK_CUR);
 
 
-typedef struct{
-	FILE* fptr;
-}bmp_image_t;
 
 
-unsigned int bmp_image_get_width(bmp_image_t image);
-unsigned int bmp_image_get_height(bmp_image_t image);
-unsigned int get_pixel(unsigned int x, unsigned int y,bmp_image_t image);
-void set_pixel(unsigned int x, unsigned int y,unsigned int color, bmp_image_t image);
-bmp_image_t create_bmp(unsigned int width, unsigned int height,unsigned int xres, unsigned int yres);
-#include <stdio.h>
-#include <unistd.h>
 
-unsigned int bmp_image_get_width(bmp_image_t image){
-	fseek(image.fptr,0x12,SEEK_SET);
-	unsigned int var;
-	fread(&var,4,1,image.fptr);
-	return var;
-}
-
-unsigned int bmp_image_get_height(bmp_image_t image){
-	fseek(image.fptr,0x16,SEEK_SET);
-	unsigned int var;
-	fread(&var,3,1,image.fptr);
-	return var;
-}
-unsigned int get_pixel(unsigned int x, unsigned int y,bmp_image_t image){
-	unsigned int res;
-	fseek(image.fptr,0x36+(3*(x+(bmp_image_get_width(image)*y))),SEEK_SET);
-	fread(&res,3,1,image.fptr);
-	return res;
-}
-void set_pixel(unsigned int x, unsigned int y,unsigned int color, bmp_image_t image){
-	fseek(image.fptr,0x36+(3*(x+(bmp_image_get_width(image)*y))),SEEK_SET);
-	fwrite(&color,3,1,image.fptr);
-}
-bmp_image_t create_bmp(unsigned int width, unsigned int height,unsigned int xres, unsigned int yres){
-	FILE* fp=fopen("image.bmp","w+");
-	fpos_t fpos;
-	unsigned int image_size=width*height*4;
-	unsigned int var=0x36+image_size;
-	fputc('B',fp);
-	fputc('M',fp);
-	fwrite(&var, 4,1,fp);
-	var=0;
-	fwrite(&var,4,1,fp);
-	var=0x36;
-	fwrite(&var,4,1,fp);
-	var=40;
-	fwrite(&var,4,1,fp);
-	fwrite(&width,4,1,fp);
-	fwrite(&height,4,1,fp);
-	var=1;
-	fwrite(&var,2,1,fp);
-	var=24;
-	fwrite(&var,2,1,fp);
-	var=0;
-	fwrite(&var,4,1,fp);
-	fwrite(&image_size,4,1,fp);
-	fwrite(&xres,4,1,fp);
-	fwrite(&yres,4,1,fp);
-	var=1;
-	fwrite(&var,4,1,fp);
-	var=0;
-	fwrite(&var,4,1,fp);
-	bmp_image_t bmp_image;
-	bmp_image.fptr=fp;
-	return bmp_image;
-}
-/*int main(){
-	bmp_image_t test_image = create_bmp(8,8,1890,1890);
-	unsigned int width = bmp_image_get_width(test_image);
-	unsigned int height = bmp_image_get_height(test_image);
-	for(unsigned int i=0;i<8;i++){
-		for(unsigned int j=0;j<8;j++){
-			set_pixel(i,j,0xffffff,test_image);
-		}
-	}
-	set_pixel(0,0,0x0,test_image);
-	set_pixel(1,1,0xff,test_image);
-	set_pixel(2,2,0xffff,test_image);
-	fclose(test_image.fptr);
-	return 0;
-}
-	
-*/
