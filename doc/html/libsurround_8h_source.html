@@ -236,17 +236,68 @@ $(document).ready(function(){initNavTree('libsurround_8h_source.html',''); initR
 <div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;len;i++) filename[i]=pathname[index+i+1];</div>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keywordflow">return</span> filename;</div>
 <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;}</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160; </div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
+<div class="line"><a name="l00209"></a><span class="lineno"><a class="line" href="libsurround_8h.html#a3c67844981c073af4eb25de4ed7ae649">  209</a></span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="libsurround_8h.html#a3c67844981c073af4eb25de4ed7ae649">bmp_image_get_width</a>(<a class="code" href="structbmp__image__t.html">bmp_image_t</a> image){</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    fseek(image.fptr,0x12,SEEK_SET);</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> var;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    fread(&amp;var,4,1,image.fptr);</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <span class="keywordflow">return</span> var;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;}</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; </div>
+<div class="line"><a name="l00216"></a><span class="lineno"><a class="line" href="libsurround_8h.html#a7f0fbea38f0d1302d6a2d0ac4c741ed1">  216</a></span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="libsurround_8h.html#a7f0fbea38f0d1302d6a2d0ac4c741ed1">bmp_image_get_height</a>(<a class="code" href="structbmp__image__t.html">bmp_image_t</a> image){</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    fseek(image.fptr,0x16,SEEK_SET);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> var;</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    fread(&amp;var,3,1,image.fptr);</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="keywordflow">return</span> var;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;}</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> get_pixel(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> x, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> y,<a class="code" href="structbmp__image__t.html">bmp_image_t</a> image){</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> res;</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    fseek(image.fptr,0x36+(3*(x+(<a class="code" href="libsurround_8h.html#a3c67844981c073af4eb25de4ed7ae649">bmp_image_get_width</a>(image)*y))),SEEK_SET);</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    fread(&amp;res,3,1,image.fptr);</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keywordflow">return</span> res;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;}</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="keywordtype">void</span> <a class="code" href="libsurround_8h.html#a1f7c29a78173cd1afa73bf963d7d8e59">set_pixel</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> x, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> y,<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> color, <a class="code" href="structbmp__image__t.html">bmp_image_t</a> image){</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    fseek(image.fptr,0x36+(3*(x+(<a class="code" href="libsurround_8h.html#a3c67844981c073af4eb25de4ed7ae649">bmp_image_get_width</a>(image)*y))),SEEK_SET);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    fwrite(&amp;color,3,1,image.fptr);</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;}</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<a class="code" href="structbmp__image__t.html">bmp_image_t</a> <a class="code" href="libsurround_8h.html#a00f23cd2628837bee35cbcfee9e69065">create_bmp</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> width, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> height,<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> xres, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> yres){</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    FILE* fp=fopen(<span class="stringliteral">&quot;image.bmp&quot;</span>,<span class="stringliteral">&quot;w+&quot;</span>);</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    fpos_t fpos;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> image_size=width*height*4;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> var=0x36+image_size;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    fputc(<span class="charliteral">&#39;B&#39;</span>,fp);</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    fputc(<span class="charliteral">&#39;M&#39;</span>,fp);</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    fwrite(&amp;var, 4,1,fp);</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    var=0;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    fwrite(&amp;var,4,1,fp);</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    var=0x36;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    fwrite(&amp;var,4,1,fp);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    var=40;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    fwrite(&amp;var,4,1,fp);</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    fwrite(&amp;width,4,1,fp);</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    fwrite(&amp;height,4,1,fp);</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    var=1;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    fwrite(&amp;var,2,1,fp);</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    var=24;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    fwrite(&amp;var,2,1,fp);</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    var=0;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    fwrite(&amp;var,4,1,fp);</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    fwrite(&amp;image_size,4,1,fp);</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    fwrite(&amp;xres,4,1,fp);</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    fwrite(&amp;yres,4,1,fp);</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    var=1;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    fwrite(&amp;var,4,1,fp);</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    var=0;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    fwrite(&amp;var,4,1,fp);</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    <a class="code" href="structbmp__image__t.html">bmp_image_t</a> bmp_image;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    bmp_image.fptr=fp;</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <span class="keywordflow">return</span> bmp_image;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;}</div>
 <div class="ttc" id="alibsurround_8h_html_a00f23cd2628837bee35cbcfee9e69065"><div class="ttname"><a href="libsurround_8h.html#a00f23cd2628837bee35cbcfee9e69065">create_bmp</a></div><div class="ttdeci">bmp_image_t create_bmp(const char *filename, uint32_t width, uint32_t height, uint32_t xres, uint32_t yres)</div><div class="ttdoc">create and return a bmp file</div></div>
 <div class="ttc" id="alibsurround_8h_html_a1f7c29a78173cd1afa73bf963d7d8e59"><div class="ttname"><a href="libsurround_8h.html#a1f7c29a78173cd1afa73bf963d7d8e59">set_pixel</a></div><div class="ttdeci">int set_pixel(uint32_t x, uint32_t y, rgb_color_t color, bmp_image_t image)</div><div class="ttdoc">set a pixel to a given color in a given image</div></div>
-<div class="ttc" id="alibsurround_8h_html_a3c67844981c073af4eb25de4ed7ae649"><div class="ttname"><a href="libsurround_8h.html#a3c67844981c073af4eb25de4ed7ae649">bmp_image_get_width</a></div><div class="ttdeci">int bmp_image_get_width(bmp_image_t image)</div><div class="ttdoc">get width of image</div><div class="ttdef"><b>Definition:</b> temp.h:20</div></div>
+<div class="ttc" id="alibsurround_8h_html_a3c67844981c073af4eb25de4ed7ae649"><div class="ttname"><a href="libsurround_8h.html#a3c67844981c073af4eb25de4ed7ae649">bmp_image_get_width</a></div><div class="ttdeci">int bmp_image_get_width(bmp_image_t image)</div><div class="ttdoc">get width of image</div><div class="ttdef"><b>Definition:</b> libsurround.h:209</div></div>
 <div class="ttc" id="alibsurround_8h_html_a52f34996467785cd2b6e3011419ea8b8"><div class="ttname"><a href="libsurround_8h.html#a52f34996467785cd2b6e3011419ea8b8">err_exit_alt</a></div><div class="ttdeci">void err_exit_alt(const char *format,...)</div><div class="ttdoc">prints an error message and exits with EXIT_FAILURE without calling exit handlers</div><div class="ttdef"><b>Definition:</b> libsurround.h:161</div></div>
 <div class="ttc" id="alibsurround_8h_html_a5be980d974668366d9775ce81766f0b2"><div class="ttname"><a href="libsurround_8h.html#a5be980d974668366d9775ce81766f0b2">filename_from_pathname</a></div><div class="ttdeci">char * filename_from_pathname(const char *pathname, int len)</div><div class="ttdoc">gets a filename from a pathname allocates a string containing the part of the string in pathname afte...</div><div class="ttdef"><b>Definition:</b> libsurround.h:197</div></div>
-<div class="ttc" id="alibsurround_8h_html_a7f0fbea38f0d1302d6a2d0ac4c741ed1"><div class="ttname"><a href="libsurround_8h.html#a7f0fbea38f0d1302d6a2d0ac4c741ed1">bmp_image_get_height</a></div><div class="ttdeci">int bmp_image_get_height(bmp_image_t image)</div><div class="ttdoc">get height of image</div><div class="ttdef"><b>Definition:</b> temp.h:27</div></div>
+<div class="ttc" id="alibsurround_8h_html_a7f0fbea38f0d1302d6a2d0ac4c741ed1"><div class="ttname"><a href="libsurround_8h.html#a7f0fbea38f0d1302d6a2d0ac4c741ed1">bmp_image_get_height</a></div><div class="ttdeci">int bmp_image_get_height(bmp_image_t image)</div><div class="ttdoc">get height of image</div><div class="ttdef"><b>Definition:</b> libsurround.h:216</div></div>
 <div class="ttc" id="alibsurround_8h_html_aad09973f8c65cdb87f4950d0e23f875a"><div class="ttname"><a href="libsurround_8h.html#aad09973f8c65cdb87f4950d0e23f875a">err_msg</a></div><div class="ttdeci">void err_msg(const char *format,...)</div><div class="ttdoc">prints an error message</div><div class="ttdef"><b>Definition:</b> libsurround.h:175</div></div>
 <div class="ttc" id="alibsurround_8h_html_ad83bc66851be4582ec97ba670a95fa0a"><div class="ttname"><a href="libsurround_8h.html#ad83bc66851be4582ec97ba670a95fa0a">err_exit</a></div><div class="ttdeci">void err_exit(const char *format,...)</div><div class="ttdoc">prints an error message and exits with EXIT_FAILURE</div><div class="ttdef"><b>Definition:</b> libsurround.h:148</div></div>
 <div class="ttc" id="alibsurround_8h_html_adc4683ee7e3dc8a5b62e54e18ea85404"><div class="ttname"><a href="libsurround_8h.html#adc4683ee7e3dc8a5b62e54e18ea85404">bmp_image_get_pixel</a></div><div class="ttdeci">rgb_color_t bmp_image_get_pixel(uint32_t x, uint32_t y, bmp_image_t image)</div><div class="ttdoc">get color in rgb of given pixel of given image</div></div>

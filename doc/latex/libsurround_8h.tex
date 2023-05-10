@@ -102,7 +102,16 @@ rgb\+\_\+color\+\_\+t \mbox{\hyperlink{libsurround_8h_adc4683ee7e3dc8a5b62e54e18
 int \mbox{\hyperlink{libsurround_8h_a1f7c29a78173cd1afa73bf963d7d8e59}{set\+\_\+pixel}} (uint32\+\_\+t x, uint32\+\_\+t y, rgb\+\_\+color\+\_\+t color, \mbox{\hyperlink{structbmp__image__t}{bmp\+\_\+image\+\_\+t}} image)
 \begin{DoxyCompactList}\small\item\em set a pixel to a given color in a given image \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structbmp__image__t}{bmp\+\_\+image\+\_\+t}} \mbox{\hyperlink{libsurround_8h_a00f23cd2628837bee35cbcfee9e69065}{create\+\_\+bmp}} (const char $\ast$filename, uint32\+\_\+t width, uint32\+\_\+t height, uint32\+\_\+t xres, uint32\+\_\+t yres)
-\begin{DoxyCompactList}\small\item\em create and return a bmp file \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em create and return a bmp file \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{libsurround_8h_a23517b8b6c6b4de70707efd60f6e9b79}\label{libsurround_8h_a23517b8b6c6b4de70707efd60f6e9b79}} 
+unsigned int {\bfseries get\+\_\+pixel} (unsigned int x, unsigned int y, \mbox{\hyperlink{structbmp__image__t}{bmp\+\_\+image\+\_\+t}} image)
+\item 
+\mbox{\Hypertarget{libsurround_8h_a612219a7a9f892c077cd8dc627682aa8}\label{libsurround_8h_a612219a7a9f892c077cd8dc627682aa8}} 
+void {\bfseries set\+\_\+pixel} (unsigned int x, unsigned int y, unsigned int color, \mbox{\hyperlink{structbmp__image__t}{bmp\+\_\+image\+\_\+t}} image)
+\item 
+\mbox{\Hypertarget{libsurround_8h_ae9250940e17a4f616a53c02378c53bc9}\label{libsurround_8h_ae9250940e17a4f616a53c02378c53bc9}} 
+\mbox{\hyperlink{structbmp__image__t}{bmp\+\_\+image\+\_\+t}} {\bfseries create\+\_\+bmp} (unsigned int width, unsigned int height, unsigned int xres, unsigned int yres)
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}

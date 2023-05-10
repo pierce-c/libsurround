@@ -1,9 +1,55 @@
 \begin{theindex}
 
-  \item {bmp\_image\_t}, \hyperpage{5}
+  \item {bmp\_image\_get\_height}
+    \subitem {libsurround.h}, \hyperpage{10}
+  \item {bmp\_image\_get\_pixel}
+    \subitem {libsurround.h}, \hyperpage{11}
+  \item {bmp\_image\_get\_width}
+    \subitem {libsurround.h}, \hyperpage{11}
+  \item {bmp\_image\_t}, \hyperpage{7}
 
   \indexspace
 
-  \item {surround\_window\_t}, \hyperpage{5}
+  \item {create\_bmp}
+    \subitem {libsurround.h}, \hyperpage{11}
+
+  \indexspace
+
+  \item {err\_exit}
+    \subitem {libsurround.h}, \hyperpage{12}
+  \item {err\_exit\_alt}
+    \subitem {libsurround.h}, \hyperpage{12}
+  \item {err\_msg}
+    \subitem {libsurround.h}, \hyperpage{13}
+
+  \indexspace
+
+  \item {filename\_from\_pathname}
+    \subitem {libsurround.h}, \hyperpage{13}
+
+  \indexspace
+
+  \item {libsurround.h}, \hyperpage{9}
+    \subitem {bmp\_image\_get\_height}, \hyperpage{10}
+    \subitem {bmp\_image\_get\_pixel}, \hyperpage{11}
+    \subitem {bmp\_image\_get\_width}, \hyperpage{11}
+    \subitem {create\_bmp}, \hyperpage{11}
+    \subitem {err\_exit}, \hyperpage{12}
+    \subitem {err\_exit\_alt}, \hyperpage{12}
+    \subitem {err\_msg}, \hyperpage{13}
+    \subitem {filename\_from\_pathname}, \hyperpage{13}
+    \subitem {set\_pixel}, \hyperpage{13}
+    \subitem {usage\_err}, \hyperpage{15}
+
+  \indexspace
+
+  \item {set\_pixel}
+    \subitem {libsurround.h}, \hyperpage{13}
+  \item {surround\_window\_t}, \hyperpage{7}
+
+  \indexspace
+
+  \item {usage\_err}
+    \subitem {libsurround.h}, \hyperpage{15}
 
 \end{theindex}

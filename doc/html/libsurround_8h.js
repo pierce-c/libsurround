@@ -21,6 +21,7 @@ var libsurround_8h =
     [ "bmp_image_get_pixel", "libsurround_8h.html#adc4683ee7e3dc8a5b62e54e18ea85404", null ],
     [ "bmp_image_get_width", "libsurround_8h.html#a3c67844981c073af4eb25de4ed7ae649", null ],
     [ "create_bmp", "libsurround_8h.html#a00f23cd2628837bee35cbcfee9e69065", null ],
+    [ "create_bmp", "libsurround_8h.html#ae9250940e17a4f616a53c02378c53bc9", null ],
     [ "create_window", "libsurround_8h.html#ab1dbf48533ef38b54674ee291062b493", null ],
     [ "drawer_exit", "libsurround_8h.html#ab5fb3410651eee48dc8d7e1dda20e797", null ],
     [ "drawer_init", "libsurround_8h.html#aab4a45a1dcac65817236b6312a105734", null ],
@@ -29,8 +30,10 @@ var libsurround_8h =
     [ "err_msg", "libsurround_8h.html#aad09973f8c65cdb87f4950d0e23f875a", null ],
     [ "filename_from_pathname", "libsurround_8h.html#a5be980d974668366d9775ce81766f0b2", null ],
     [ "free_window", "libsurround_8h.html#a987146d5f78326f51a94da0b4e3e8f48", null ],
+    [ "get_pixel", "libsurround_8h.html#a23517b8b6c6b4de70707efd60f6e9b79", null ],
     [ "map_window", "libsurround_8h.html#abd9a2e4bc36881ba1f05bdb596079629", null ],
     [ "set_pixel", "libsurround_8h.html#a1f7c29a78173cd1afa73bf963d7d8e59", null ],
+    [ "set_pixel", "libsurround_8h.html#a612219a7a9f892c077cd8dc627682aa8", null ],
     [ "unmap_window", "libsurround_8h.html#ad93fca4f25d4b1e2f813b98f086656d6", null ],
     [ "usage_err", "libsurround_8h.html#afe962daccb7bdeb84f538e12bfd036d2", null ]
 ];
