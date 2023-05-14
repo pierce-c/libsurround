@@ -30,10 +30,23 @@ typedef struct{
 	FILE* fptr;
 }bmp_image_t;
 
-//typedef int bmp_image_t;
+typedef int sur_file_t; /// file descriptor
 
-typedef int sur_file_t;
-typedef uint32_t rgb_color_t;
+typedef struct rgb_color{
+	uint8_t red;
+	uint8_t green;
+	uint8_t blue;
+}rgb_color_t;
+
+typedef struct sur_image{
+	sur_file_t fd; /// file descriptor of file it is loaded from, -1 if not loaded from file
+	uint32_t width; /// width of image
+	uint32_t height; /// height of image
+	uint32_t bits_per_pixel; /// amount of bits to describe each pixel; 1 and 24 as valid options
+	// xres and yres are parameters for saving this to a file
+	void **data; /// where the pixels are stored
+	char *pathname; /// pathname of file it is loaded from, NULL if not loaded from file
+}
 
 int create_window(surround_window_t *win/*params*/);
 int free_window(/*params*/);
@@ -92,6 +105,43 @@ void usage_err(const char* format,...);
  * @return a dynamically allocated string containing the filename
  */
 char* filename_from_pathname(const char* pathname,int len);
+
+
+// function to initialize sur_image from file
+// function to initialize sur_image without file
+// function to save sur_image to file
+
+
+
+/*
+ * @brief initializes an instance of sur_image_t
+ * @param width width of image
+ * @param height height of image
+ * @param bits_per_pixel number of bits per pixel; current supported values: { 1, 24 }
+ */
+sur_image_t sur_image_init(uint32_t width,uint32_t height,uint32_t bits_per_pixel);
+/*
+ * @brief initializes an instance of sur_image_t from a file
+ * @param pathname the pathname of the file to initialize sur_image_t from
+ */
+sur_image_t sur_image_init_from_file(const char* pathname);
+/*
+ * @brief saves the information in sur_image_t to a file
+ * @param image image to get information from
+ * @param xres x resolution of image in file
+ * @param yres y resolution of image in file
+ * @param compression compression algorithm to be used or none; TODO: implement this
+ * @param filename name of file to store data in
+ * @param filetype file format to store data in: TODO: list filetypes that work with it
+ */
+int sur_image_save_to_file(sur_image_t image,uint32_t xres, uint32_t yres, int compression,
+		const char* filename, const char* filetype);
+
+
+
+
+
+
 
 
 /**
@@ -206,14 +256,14 @@ char* filename_from_pathname(const char* pathname,int len){
 	for(int i=0;i<len;i++) filename[i]=pathname[index+i+1];
 	return filename;
 }
-unsigned int bmp_image_get_width(bmp_image_t image){
+int bmp_image_get_width(bmp_image_t image){
 	fseek(image.fptr,0x12,SEEK_SET);
 	unsigned int var;
 	fread(&var,4,1,image.fptr);
 	return var;
 }
 
-unsigned int bmp_image_get_height(bmp_image_t image){
+int bmp_image_get_height(bmp_image_t image){
 	fseek(image.fptr,0x16,SEEK_SET);
 	unsigned int var;
 	fread(&var,3,1,image.fptr);
@@ -225,11 +275,12 @@ unsigned int get_pixel(unsigned int x, unsigned int y,bmp_image_t image){
 	fread(&res,3,1,image.fptr);
 	return res;
 }
-void set_pixel(unsigned int x, unsigned int y,unsigned int color, bmp_image_t image){
+int set_pixel(unsigned int x, unsigned int y,unsigned int color, bmp_image_t image){
 	fseek(image.fptr,0x36+(3*(x+(bmp_image_get_width(image)*y))),SEEK_SET);
 	fwrite(&color,3,1,image.fptr);
 }
-bmp_image_t create_bmp(unsigned int width, unsigned int height,unsigned int xres, unsigned int yres){
+
+bmp_image_t create_bmp(const char* filename,unsigned int width, unsigned int height,unsigned int xres, unsigned int yres){
 	FILE* fp=fopen("image.bmp","w+");
 	fpos_t fpos;
 	unsigned int image_size=width*height*4;
