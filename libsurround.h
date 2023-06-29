@@ -7,6 +7,10 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <stdarg.h>
+#include <string.h>
 
 #define u8 uint8_t
 #define u16 uint16_t
@@ -16,7 +20,6 @@
 #define i16 int16_t
 #define i32 int32_t
 #define i64 int64_t
-
 //drawing library is an interface to xcb
 
 typedef struct{
@@ -33,20 +36,30 @@ typedef struct{
 typedef int sur_file_t; /// file descriptor
 
 typedef struct rgb_color{
-	uint8_t red;
-	uint8_t green;
 	uint8_t blue;
+	uint8_t green;
+	uint8_t red;
 }rgb_color_t;
+
+typedef struct sur_bitmap{
+	sur_file_t fd; /// file descriptor of file it is loaded from, -1 if not loaded from file
+	char *pathname; /// pathname of file it is loaded from, NULL if not loaded from file
+	uint32_t width; /// width of bitmap
+	uint32_t height; /// height of bitmap
+	uint32_t *data; /// where the bits are stored
+	uint32_t data_len; /// length of data array; calculated from width and height
+}sur_bitmap_t;
+
+
 
 typedef struct sur_image{
 	sur_file_t fd; /// file descriptor of file it is loaded from, -1 if not loaded from file
+	char *pathname; /// pathname of file it is loaded from, NULL if not loaded from file
 	uint32_t width; /// width of image
 	uint32_t height; /// height of image
-	uint32_t bits_per_pixel; /// amount of bits to describe each pixel; 1 and 24 as valid options
 	// xres and yres are parameters for saving this to a file
-	void **data; /// where the pixels are stored
-	char *pathname; /// pathname of file it is loaded from, NULL if not loaded from file
-}
+	uint32_t **data; /// where the pixels are stored, should be indexed with data[row][column]
+}sur_image_t;
 
 int create_window(surround_window_t *win/*params*/);
 int free_window(/*params*/);
@@ -107,9 +120,35 @@ void usage_err(const char* format,...);
 char* filename_from_pathname(const char* pathname,int len);
 
 
-// function to initialize sur_image from file
-// function to initialize sur_image without file
-// function to save sur_image to file
+/*
+ * @brief initializes an instance of sur_bitmap_t
+ * @param width width of bitmap
+ * @param height height of bitmap
+ */
+sur_bitmap_t sur_bitmap_init(uint32_t width,uint32_t height);
+/*
+ * @brief initializes an instance of sur_bitmap_t from a file
+ * @param pathname the pathname of the file to initialize sur_bitmap_t from
+ */
+sur_bitmap_t sur_bitmap_init_from_file(const char* pathname);
+/*
+ * @brief saves the information in sur_bitmap_t to a file
+ * @param bitmap bitmap to get information from
+ * @param xres x resolution of bitmap in file
+ * @param yres y resolution of bitmap in file
+ * @param compression compression algorithm to be used or none; TODO: implement this
+ * @param filename name of file to store data in
+ * @param filetype file format to store data in: TODO: list filetypes that work with it
+ */
+int sur_bitmap_save_to_file(sur_bitmap_t bitmap,uint32_t xres, uint32_t yres, int compression,
+		const char* filename, const char* filetype);
+
+/*
+ * @brief free sur_image_t
+ * @param image image to free
+ */
+int sur_bitmap_free(sur_bitmap_t bitmap);
+
 
 
 
@@ -117,9 +156,8 @@ char* filename_from_pathname(const char* pathname,int len);
  * @brief initializes an instance of sur_image_t
  * @param width width of image
  * @param height height of image
- * @param bits_per_pixel number of bits per pixel; current supported values: { 1, 24 }
  */
-sur_image_t sur_image_init(uint32_t width,uint32_t height,uint32_t bits_per_pixel);
+sur_image_t sur_image_init(uint32_t width,uint32_t height);
 /*
  * @brief initializes an instance of sur_image_t from a file
  * @param pathname the pathname of the file to initialize sur_image_t from
@@ -137,7 +175,11 @@ sur_image_t sur_image_init_from_file(const char* pathname);
 int sur_image_save_to_file(sur_image_t image,uint32_t xres, uint32_t yres, int compression,
 		const char* filename, const char* filetype);
 
-
+/*
+ * @brief free sur_image_t
+ * @param image image to free
+ */
+int sur_image_free(sur_image_t image);
 
 
 
@@ -275,8 +317,10 @@ unsigned int get_pixel(unsigned int x, unsigned int y,bmp_image_t image){
 	fread(&res,3,1,image.fptr);
 	return res;
 }
-int set_pixel(unsigned int x, unsigned int y,unsigned int color, bmp_image_t image){
-	fseek(image.fptr,0x36+(3*(x+(bmp_image_get_width(image)*y))),SEEK_SET);
+int set_pixel(uint32_t x, uint32_t y, rgb_color_t color, bmp_image_t image){
+//int set_pixel(unsigned int x, unsigned int y,unsigned int color, bmp_image_t image){
+	int width=bmp_image_get_width(image);
+	fseek(image.fptr,0x36+(3*x + y * (3 * width + (4 - (3*width)%4))),SEEK_SET);
 	fwrite(&color,3,1,image.fptr);
 }
 
@@ -312,4 +356,74 @@ bmp_image_t create_bmp(const char* filename,unsigned int width, unsigned int hei
 	bmp_image_t bmp_image;
 	bmp_image.fptr=fp;
 	return bmp_image;
+}
+
+
+
+
+
+
+
+sur_image_t sur_image_init(uint32_t width,uint32_t height){
+	sur_image_t image;
+	image.fd = -1;
+	image.width = width;
+	image.height = height;
+	image.pathname=NULL; // no file name, is not loaded from file
+	
+	image.data = malloc(height * sizeof(uint32_t*));
+	if(image.data == NULL)
+		err_exit("malloc");
+
+	for(int i=0;i<height;i++){
+		image.data[i] = malloc(width * sizeof(uint32_t));
+		if(image.data == NULL)
+			err_exit("malloc");
+	}
+
+	return image;
+}
+
+sur_image_t sur_image_init_from_file(const char* pathname){
+	sur_image_t image;
+	image.pathname = malloc(strlen(pathname)*sizeof(char));
+	if(!image.pathname)
+		err_exit("malloc");
+	strcpy(image.pathname,pathname);
+
+	int fd = open(pathname,O_RDONLY);
+	if(fd == -1)
+		err_exit("open");
+
+	// typically the first two bytes of the file are used to specify file format
+	char buffer[3];
+	if(read(fd,buffer,2) == -1)
+		err_exit("read");
+	buffer[2]='\0';
+	if(buffer == "BM"){// is a .bmp file
+		printf("sur_image_init_from_file: %s is a .bmp file\n", pathname);
+					   // TODO: implement this
+					   // TODO: test this works
+
+			
+	}
+	// TODO: implement handlers for more file formats
+	else{
+		printf("sur_image_init_from_file: unrecognized file format\n");
+		exit(EXIT_FAILURE);
+	}
+	if(close(fd))
+		err_exit("close");
+	return image;
+}
+
+int sur_image_save_to_file(sur_image_t image,uint32_t xres, uint32_t yres, int compression,
+		const char* filename, const char* filetype){
+	int fd = open(image.pathname, O_RDWR);
+	if(fd == -1)
+		err_exit("open");
+	// TODO: actually make this function do its intended purpose
+	if(close(fd))
+		err_exit("open");
+	return 0;
 }
