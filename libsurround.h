@@ -25,13 +25,6 @@
 //drawing library is an interface to xcb
 
 typedef struct{
-	xcb_window_t *window;
-	xcb_screen_t *screen;
-	xcb_connection_t *surround_connection;
-	//will add more later
-}surround_window_t;
-
-typedef struct{
 	FILE* fptr;
 }bmp_image_t;
 
@@ -70,20 +63,26 @@ typedef struct sur_image{
 	sur_image_extras_t extras; /// pointer to struct containing info about saving to a file
 }sur_image_t;
 
-//int create_window(surround_window_t *win/*params*/);
-//int free_window(/*params*/);
-
-//int drawer_init(/*params*/);
-//int drawer_exit(/*params*/);
-
-//int map_window(/*params*/);
-//int unmap_window(/*params*/);
 /**
 	@brief bool enum type; defines false as 0 and true as 1
 */
 typedef enum{false,true} bool;
 
 #define curr(fd) (int)lseek(fd,0,SEEK_CUR)
+
+/**
+ * @brief swaps the contents of the two pointers
+ * @param x pointer to one of the variables to be swapped
+ * @param y pointer to the other variable to be swapped
+ */
+void swap(int* x, int* y);
+
+/**
+ * @brief finds the absolute value of the parameter
+ * @param x number to find the absolute value of
+ * @return the absolute value
+ */
+int abs(int x);
 
 /**
  * @brief prints an error message and exits with EXIT_FAILURE
@@ -129,50 +128,19 @@ void usage_err(const char* format,...);
 char* filename_from_pathname(const char* pathname,int len);
 
 
-/*
- * @brief initializes an instance of sur_bitmap_t
- * @param width width of bitmap
- * @param height height of bitmap
- */
-sur_bitmap_t sur_bitmap_init(uint32_t width,uint32_t height);
-/*
- * @brief initializes an instance of sur_bitmap_t from a file
- * @param pathname the pathname of the file to initialize sur_bitmap_t from
- */
-sur_bitmap_t sur_bitmap_init_from_file(const char* pathname);
-/*
- * @brief saves the information in sur_bitmap_t to a file
- * @param bitmap bitmap to get information from
- * @param xres x resolution of bitmap in file
- * @param yres y resolution of bitmap in file
- * @param compression compression algorithm to be used or none; TODO: implement this
- * @param filename name of file to store data in
- * @param filetype file format to store data in: TODO: list filetypes that work with it
- */
-int sur_bitmap_save_to_file(sur_bitmap_t bitmap,uint32_t xres, uint32_t yres, int compression,
-		const char* filename, const char* filetype);
 
-/*
- * @brief free sur_image_t
- * @param image image to free
- */
-int sur_bitmap_free(sur_bitmap_t bitmap);
-
-
-
-
-/*
+/**
  * @brief initializes an instance of sur_image_t
  * @param width width of image
  * @param height height of image
  */
 sur_image_t sur_image_init(uint32_t width,uint32_t height);
-/*
+/**
  * @brief initializes an instance of sur_image_t from a file
  * @param pathname the pathname of the file to initialize sur_image_t from
  */
 sur_image_t sur_image_init_from_file(const char* pathname);
-/*
+/**
  * @brief saves the information in sur_image_t to a file
  * @param image image to get information from
  * @param xres x resolution of image in file
@@ -183,7 +151,7 @@ sur_image_t sur_image_init_from_file(const char* pathname);
  */
 int sur_image_save_to_file(sur_image_t image,uint32_t xres, uint32_t yres, char *filename);
 
-/*
+/**
  * @brief free sur_image_t
  * @param image image to free
  */
@@ -243,13 +211,36 @@ int set_pixel(uint32_t x, uint32_t y, rgb_color_t color, bmp_image_t image);
  */
 bmp_image_t create_bmp(const char* filename, uint32_t width, uint32_t height, uint32_t xres, uint32_t yres);
 
+/*
+ * @brief draws a line on the given image using bresenham's algorithm
+ * @param x0 x-coordinate of the first endpoint of the line
+ * @param y0 y-coordinate of the first endpoint of the line
+ * @param x1 x-coordinate of the second endpoint of the line
+ * @param y1 y-coordinate of the second endpoint of the line
+ * @param image image to draw on
+ * @param color first 24 bits of this integer are the color in rgb to draw the line in
+ */
+void sur_image_draw_line(int x0, int y0, int x1, int y1, sur_image_t image, uint32_t color);
+
 
 static int sur_image_init_bmp_from_file(sur_image_t* image);
 	//nested function in sur_image_init_from_file
 
-int sur_image_save_bmp_to_file(sur_image_t image,uint32_t xres, uint32_t yres, char *filename);
+static int sur_image_save_bmp_to_file(sur_image_t image,uint32_t xres, uint32_t yres, char *filename);
 	//nested function in sur_image_save_to_file
 
+
+void swap(int* x,int* y){
+	int temp = *x;
+	*x = *y;
+	*y = temp;
+}
+
+int abs(int x){
+	if(x<0)
+		return ~x + 1;
+	return x;
+}
 
 #include "ename.c.inc"
 void err_exit(const char* format,...){
@@ -313,6 +304,46 @@ char* filename_from_pathname(const char* pathname,int len){
 	for(int i=0;i<len;i++) filename[i]=pathname[index+i+1];
 	return filename;
 }
+
+void sur_image_draw_line(int x0, int y0, int x1, int y1, sur_image_t image, uint32_t color){
+	bool steep = false;
+	if(abs(y1-y0)>abs(x1-x0)){
+		swap(&x0,&y0);
+		swap(&x1,&y1);
+		steep = true;
+	}
+	if(x0>x1){
+		swap(&x0,&x1);
+		swap(&y0,&y1);
+	}
+
+	int dx = x1 - x0;
+	int dy = y1 - y0;
+	int yi = 1;
+	if(dy < 0){
+		yi = -1;
+		dy = -dy;
+	}
+	int D = (dy<<1) - dx;
+	int y = y0;
+	for(int x=x0; x<x1;x++){
+		if(steep)
+			image.data[x][y] = color;
+		else
+			image.data[y][x] = color;
+		if(D>0){
+			y += yi;
+			D += (dy - dx)<<1;
+		}
+		else
+			D += dy;
+	}
+}
+
+
+
+
+/*
 int bmp_image_get_width(bmp_image_t image){
 	fseek(image.fptr,0x12,SEEK_SET);
 	unsigned int var;
@@ -372,7 +403,7 @@ bmp_image_t create_bmp(const char* filename,unsigned int width, unsigned int hei
 	bmp_image.fptr=fp;
 	return bmp_image;
 }
-
+*/
 
 
 
@@ -602,18 +633,15 @@ int sur_image_save_bmp_to_file(sur_image_t image,uint32_t xres, uint32_t yres, c
 	if(write(fd,signature,2) != 2)
 		err_exit("write");
 
-	//
-	
-	//TODO:put filesize here
-
-	//
+	buf = 0x36 + image.height * (image.width*3 + 4 - (image.width * 3) % 4);
+	if(write(fd,&buf,4)!=4)
+		err_exit("write");
 	
 	lseek(fd,10,SEEK_SET);//10 bytes from beginning of file
 	buf = 0x36;
 	if(write(fd,&buf,4)!= 4)//data offset
 		err_exit("write");
 	
-
 	buf = 40;
 	if(write(fd, &buf, 4) != 4)//size of infoheader
 		err_exit("write");
