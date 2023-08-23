@@ -117,6 +117,11 @@ $(document).ready(function(){initNavTree('libsurround_8h.html',''); initResizabl
 <code>#include &lt;unistd.h&gt;</code><br />
 <code>#include &lt;sys/stat.h&gt;</code><br />
 <code>#include &lt;fcntl.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;errno.h&gt;</code><br />
+<code>#include &lt;stdarg.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;macros.h&quot;</code><br />
 <code>#include &quot;ename.c.inc&quot;</code><br />
 </div>
 <p><a href="libsurround_8h_source.html">Go to the source code of this file.</a></p>
@@ -126,6 +131,15 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsurround__window__t.html">surround_window_t</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbmp__image__t.html">bmp_image_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrgb__color.html">rgb_color</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">file descriptor  <a href="structrgb__color.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsur__bitmap.html">sur_bitmap</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsur__image__extras.html">sur_image_extras</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsur__image.html">sur_image</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -155,7 +169,7 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>i64</b>&#160;&#160;&#160;int64_t</td></tr>
 <tr class="separator:aa777e5139adfca31612ec04bc2b26845"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a801633b6db82925cdfca8af054a9c89d"><td class="memItemLeft" align="right" valign="top"><a id="a801633b6db82925cdfca8af054a9c89d"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>curr</b>(fd)&#160;&#160;&#160;lseek(fd,0,SEEK_CUR);</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>curr</b>(fd)&#160;&#160;&#160;(int)lseek(fd,0,SEEK_CUR)</td></tr>
 <tr class="separator:a801633b6db82925cdfca8af054a9c89d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
@@ -163,9 +177,19 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a936e01dfb79bc88fd464915524f57349"><td class="memItemLeft" align="right" valign="top"><a id="a936e01dfb79bc88fd464915524f57349"></a>
 typedef int&#160;</td><td class="memItemRight" valign="bottom"><b>sur_file_t</b></td></tr>
 <tr class="separator:a936e01dfb79bc88fd464915524f57349"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0edf654e9da1a5dcadaab006fbd4166b"><td class="memItemLeft" align="right" valign="top"><a id="a0edf654e9da1a5dcadaab006fbd4166b"></a>
-typedef uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>rgb_color_t</b></td></tr>
-<tr class="separator:a0edf654e9da1a5dcadaab006fbd4166b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a445e98b984d01365b2b9dea94e0ccc6b"><td class="memItemLeft" align="right" valign="top"><a id="a445e98b984d01365b2b9dea94e0ccc6b"></a>
+typedef struct <a class="el" href="structrgb__color.html">rgb_color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libsurround_8h.html#a445e98b984d01365b2b9dea94e0ccc6b">rgb_color_t</a></td></tr>
+<tr class="memdesc:a445e98b984d01365b2b9dea94e0ccc6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">file descriptor <br /></td></tr>
+<tr class="separator:a445e98b984d01365b2b9dea94e0ccc6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58271717da0852715c62a6f69c90bfeb"><td class="memItemLeft" align="right" valign="top"><a id="a58271717da0852715c62a6f69c90bfeb"></a>
+typedef struct <a class="el" href="structsur__bitmap.html">sur_bitmap</a>&#160;</td><td class="memItemRight" valign="bottom"><b>sur_bitmap_t</b></td></tr>
+<tr class="separator:a58271717da0852715c62a6f69c90bfeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa944277016e5e4f3d139e939046083a0"><td class="memItemLeft" align="right" valign="top"><a id="aa944277016e5e4f3d139e939046083a0"></a>
+typedef struct <a class="el" href="structsur__image__extras.html">sur_image_extras</a>&#160;</td><td class="memItemRight" valign="bottom"><b>sur_image_extras_t</b></td></tr>
+<tr class="separator:aa944277016e5e4f3d139e939046083a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a620c84c27b362ebce2793aaf0e88f483"><td class="memItemLeft" align="right" valign="top"><a id="a620c84c27b362ebce2793aaf0e88f483"></a>
+typedef struct <a class="el" href="structsur__image.html">sur_image</a>&#160;</td><td class="memItemRight" valign="bottom"><b>sur_image_t</b></td></tr>
+<tr class="separator:a620c84c27b362ebce2793aaf0e88f483"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -177,24 +201,6 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ab1dbf48533ef38b54674ee291062b493"><td class="memItemLeft" align="right" valign="top"><a id="ab1dbf48533ef38b54674ee291062b493"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>create_window</b> (<a class="el" href="structsurround__window__t.html">surround_window_t</a> *win)</td></tr>
-<tr class="separator:ab1dbf48533ef38b54674ee291062b493"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a987146d5f78326f51a94da0b4e3e8f48"><td class="memItemLeft" align="right" valign="top"><a id="a987146d5f78326f51a94da0b4e3e8f48"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>free_window</b> ()</td></tr>
-<tr class="separator:a987146d5f78326f51a94da0b4e3e8f48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab4a45a1dcac65817236b6312a105734"><td class="memItemLeft" align="right" valign="top"><a id="aab4a45a1dcac65817236b6312a105734"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>drawer_init</b> ()</td></tr>
-<tr class="separator:aab4a45a1dcac65817236b6312a105734"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5fb3410651eee48dc8d7e1dda20e797"><td class="memItemLeft" align="right" valign="top"><a id="ab5fb3410651eee48dc8d7e1dda20e797"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>drawer_exit</b> ()</td></tr>
-<tr class="separator:ab5fb3410651eee48dc8d7e1dda20e797"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd9a2e4bc36881ba1f05bdb596079629"><td class="memItemLeft" align="right" valign="top"><a id="abd9a2e4bc36881ba1f05bdb596079629"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>map_window</b> ()</td></tr>
-<tr class="separator:abd9a2e4bc36881ba1f05bdb596079629"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad93fca4f25d4b1e2f813b98f086656d6"><td class="memItemLeft" align="right" valign="top"><a id="ad93fca4f25d4b1e2f813b98f086656d6"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>unmap_window</b> ()</td></tr>
-<tr class="separator:ad93fca4f25d4b1e2f813b98f086656d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad83bc66851be4582ec97ba670a95fa0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libsurround_8h.html#ad83bc66851be4582ec97ba670a95fa0a">err_exit</a> (const char *format,...)</td></tr>
 <tr class="memdesc:ad83bc66851be4582ec97ba670a95fa0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">prints an error message and exits with EXIT_FAILURE  <a href="libsurround_8h.html#ad83bc66851be4582ec97ba670a95fa0a">More...</a><br /></td></tr>
 <tr class="separator:ad83bc66851be4582ec97ba670a95fa0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -210,40 +216,64 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>unmap_window</b> ()</t
 <tr class="memitem:a5be980d974668366d9775ce81766f0b2"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libsurround_8h.html#a5be980d974668366d9775ce81766f0b2">filename_from_pathname</a> (const char *pathname, int len)</td></tr>
 <tr class="memdesc:a5be980d974668366d9775ce81766f0b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets a filename from a pathname allocates a string containing the part of the string in pathname after all the '/' characters ex: given pathname "dir1/dir2/dir3/file1" will return "file1" TODO: make it work with '\'  <a href="libsurround_8h.html#a5be980d974668366d9775ce81766f0b2">More...</a><br /></td></tr>
 <tr class="separator:a5be980d974668366d9775ce81766f0b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c67844981c073af4eb25de4ed7ae649"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libsurround_8h.html#a3c67844981c073af4eb25de4ed7ae649">bmp_image_get_width</a> (<a class="el" href="structbmp__image__t.html">bmp_image_t</a> image)</td></tr>
-<tr class="memdesc:a3c67844981c073af4eb25de4ed7ae649"><td class="mdescLeft">&#160;</td><td class="mdescRight">get width of image  <a href="libsurround_8h.html#a3c67844981c073af4eb25de4ed7ae649">More...</a><br /></td></tr>
-<tr class="separator:a3c67844981c073af4eb25de4ed7ae649"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f0fbea38f0d1302d6a2d0ac4c741ed1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libsurround_8h.html#a7f0fbea38f0d1302d6a2d0ac4c741ed1">bmp_image_get_height</a> (<a class="el" href="structbmp__image__t.html">bmp_image_t</a> image)</td></tr>
-<tr class="memdesc:a7f0fbea38f0d1302d6a2d0ac4c741ed1"><td class="mdescLeft">&#160;</td><td class="mdescRight">get height of image  <a href="libsurround_8h.html#a7f0fbea38f0d1302d6a2d0ac4c741ed1">More...</a><br /></td></tr>
-<tr class="separator:a7f0fbea38f0d1302d6a2d0ac4c741ed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc4683ee7e3dc8a5b62e54e18ea85404"><td class="memItemLeft" align="right" valign="top">rgb_color_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libsurround_8h.html#adc4683ee7e3dc8a5b62e54e18ea85404">bmp_image_get_pixel</a> (uint32_t x, uint32_t y, <a class="el" href="structbmp__image__t.html">bmp_image_t</a> image)</td></tr>
+<tr class="memitem:a5dff1cbaf8613fc651c113b3ddba93c3"><td class="memItemLeft" align="right" valign="top"><a id="a5dff1cbaf8613fc651c113b3ddba93c3"></a>
+<a class="el" href="structsur__bitmap.html">sur_bitmap_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>sur_bitmap_init</b> (uint32_t width, uint32_t height)</td></tr>
+<tr class="separator:a5dff1cbaf8613fc651c113b3ddba93c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab16ae53fc563b666606e36d573d9a0b1"><td class="memItemLeft" align="right" valign="top"><a id="ab16ae53fc563b666606e36d573d9a0b1"></a>
+<a class="el" href="structsur__bitmap.html">sur_bitmap_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>sur_bitmap_init_from_file</b> (const char *pathname)</td></tr>
+<tr class="separator:ab16ae53fc563b666606e36d573d9a0b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a099fd9453c3fbb3191d359fdc195ffa1"><td class="memItemLeft" align="right" valign="top"><a id="a099fd9453c3fbb3191d359fdc195ffa1"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>sur_bitmap_save_to_file</b> (<a class="el" href="structsur__bitmap.html">sur_bitmap_t</a> bitmap, uint32_t xres, uint32_t yres, int compression, const char *filename, const char *filetype)</td></tr>
+<tr class="separator:a099fd9453c3fbb3191d359fdc195ffa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e6daf1792a23aa1f29ba124a3c1aadb"><td class="memItemLeft" align="right" valign="top"><a id="a1e6daf1792a23aa1f29ba124a3c1aadb"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>sur_bitmap_free</b> (<a class="el" href="structsur__bitmap.html">sur_bitmap_t</a> bitmap)</td></tr>
+<tr class="separator:a1e6daf1792a23aa1f29ba124a3c1aadb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bc4455619334761b4312374ca1774a2"><td class="memItemLeft" align="right" valign="top"><a id="a5bc4455619334761b4312374ca1774a2"></a>
+<a class="el" href="structsur__image.html">sur_image_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>sur_image_init</b> (uint32_t width, uint32_t height)</td></tr>
+<tr class="separator:a5bc4455619334761b4312374ca1774a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a766b021f45b897cdf8d07dfa7f46e51d"><td class="memItemLeft" align="right" valign="top"><a id="a766b021f45b897cdf8d07dfa7f46e51d"></a>
+<a class="el" href="structsur__image.html">sur_image_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>sur_image_init_from_file</b> (const char *pathname)</td></tr>
+<tr class="separator:a766b021f45b897cdf8d07dfa7f46e51d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3f2f39d7e6531d231ba67d12eb7638b"><td class="memItemLeft" align="right" valign="top"><a id="ac3f2f39d7e6531d231ba67d12eb7638b"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>sur_image_save_to_file</b> (<a class="el" href="structsur__image.html">sur_image_t</a> image, uint32_t xres, uint32_t yres, char *filename)</td></tr>
+<tr class="separator:ac3f2f39d7e6531d231ba67d12eb7638b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae041a62829d455ea8f763d1527f679ce"><td class="memItemLeft" align="right" valign="top"><a id="ae041a62829d455ea8f763d1527f679ce"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>sur_image_free</b> (<a class="el" href="structsur__image.html">sur_image_t</a> image)</td></tr>
+<tr class="separator:ae041a62829d455ea8f763d1527f679ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9da1ee33f201d0f747ecbc2864cd8ef"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libsurround_8h.html#ac9da1ee33f201d0f747ecbc2864cd8ef">bmp_image_get_width</a> (<a class="el" href="structbmp__image__t.html">bmp_image_t</a> image)</td></tr>
+<tr class="memdesc:ac9da1ee33f201d0f747ecbc2864cd8ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">get width of image  <a href="libsurround_8h.html#ac9da1ee33f201d0f747ecbc2864cd8ef">More...</a><br /></td></tr>
+<tr class="separator:ac9da1ee33f201d0f747ecbc2864cd8ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0361503a56bc127cfdde1572666025a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libsurround_8h.html#ae0361503a56bc127cfdde1572666025a">bmp_image_get_height</a> (<a class="el" href="structbmp__image__t.html">bmp_image_t</a> image)</td></tr>
+<tr class="memdesc:ae0361503a56bc127cfdde1572666025a"><td class="mdescLeft">&#160;</td><td class="mdescRight">get height of image  <a href="libsurround_8h.html#ae0361503a56bc127cfdde1572666025a">More...</a><br /></td></tr>
+<tr class="separator:ae0361503a56bc127cfdde1572666025a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc4683ee7e3dc8a5b62e54e18ea85404"><td class="memItemLeft" align="right" valign="top"><a class="el" href="libsurround_8h.html#a445e98b984d01365b2b9dea94e0ccc6b">rgb_color_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libsurround_8h.html#adc4683ee7e3dc8a5b62e54e18ea85404">bmp_image_get_pixel</a> (uint32_t x, uint32_t y, <a class="el" href="structbmp__image__t.html">bmp_image_t</a> image)</td></tr>
 <tr class="memdesc:adc4683ee7e3dc8a5b62e54e18ea85404"><td class="mdescLeft">&#160;</td><td class="mdescRight">get color in rgb of given pixel of given image  <a href="libsurround_8h.html#adc4683ee7e3dc8a5b62e54e18ea85404">More...</a><br /></td></tr>
 <tr class="separator:adc4683ee7e3dc8a5b62e54e18ea85404"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f7c29a78173cd1afa73bf963d7d8e59"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libsurround_8h.html#a1f7c29a78173cd1afa73bf963d7d8e59">set_pixel</a> (uint32_t x, uint32_t y, rgb_color_t color, <a class="el" href="structbmp__image__t.html">bmp_image_t</a> image)</td></tr>
+<tr class="memitem:a1f7c29a78173cd1afa73bf963d7d8e59"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libsurround_8h.html#a1f7c29a78173cd1afa73bf963d7d8e59">set_pixel</a> (uint32_t x, uint32_t y, <a class="el" href="libsurround_8h.html#a445e98b984d01365b2b9dea94e0ccc6b">rgb_color_t</a> color, <a class="el" href="structbmp__image__t.html">bmp_image_t</a> image)</td></tr>
 <tr class="memdesc:a1f7c29a78173cd1afa73bf963d7d8e59"><td class="mdescLeft">&#160;</td><td class="mdescRight">set a pixel to a given color in a given image  <a href="libsurround_8h.html#a1f7c29a78173cd1afa73bf963d7d8e59">More...</a><br /></td></tr>
 <tr class="separator:a1f7c29a78173cd1afa73bf963d7d8e59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00f23cd2628837bee35cbcfee9e69065"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbmp__image__t.html">bmp_image_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libsurround_8h.html#a00f23cd2628837bee35cbcfee9e69065">create_bmp</a> (const char *filename, uint32_t width, uint32_t height, uint32_t xres, uint32_t yres)</td></tr>
 <tr class="memdesc:a00f23cd2628837bee35cbcfee9e69065"><td class="mdescLeft">&#160;</td><td class="mdescRight">create and return a bmp file  <a href="libsurround_8h.html#a00f23cd2628837bee35cbcfee9e69065">More...</a><br /></td></tr>
 <tr class="separator:a00f23cd2628837bee35cbcfee9e69065"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7de427e0fcc8109806406b6e36c28097"><td class="memItemLeft" align="right" valign="top"><a id="a7de427e0fcc8109806406b6e36c28097"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>sur_image_save_bmp_to_file</b> (<a class="el" href="structsur__image.html">sur_image_t</a> image, uint32_t xres, uint32_t yres, char *filename)</td></tr>
+<tr class="separator:a7de427e0fcc8109806406b6e36c28097"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23517b8b6c6b4de70707efd60f6e9b79"><td class="memItemLeft" align="right" valign="top"><a id="a23517b8b6c6b4de70707efd60f6e9b79"></a>
 unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>get_pixel</b> (unsigned int x, unsigned int y, <a class="el" href="structbmp__image__t.html">bmp_image_t</a> image)</td></tr>
 <tr class="separator:a23517b8b6c6b4de70707efd60f6e9b79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a612219a7a9f892c077cd8dc627682aa8"><td class="memItemLeft" align="right" valign="top"><a id="a612219a7a9f892c077cd8dc627682aa8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set_pixel</b> (unsigned int x, unsigned int y, unsigned int color, <a class="el" href="structbmp__image__t.html">bmp_image_t</a> image)</td></tr>
-<tr class="separator:a612219a7a9f892c077cd8dc627682aa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9250940e17a4f616a53c02378c53bc9"><td class="memItemLeft" align="right" valign="top"><a id="ae9250940e17a4f616a53c02378c53bc9"></a>
-<a class="el" href="structbmp__image__t.html">bmp_image_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>create_bmp</b> (unsigned int width, unsigned int height, unsigned int xres, unsigned int yres)</td></tr>
-<tr class="separator:ae9250940e17a4f616a53c02378c53bc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1c3701344b837a31f73af2b2fed39c5"><td class="memItemLeft" align="right" valign="top"><a id="ab1c3701344b837a31f73af2b2fed39c5"></a>
+<a class="el" href="structbmp__image__t.html">bmp_image_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>create_bmp</b> (const char *filename, unsigned int width, unsigned int height, unsigned int xres, unsigned int yres)</td></tr>
+<tr class="separator:ab1c3701344b837a31f73af2b2fed39c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a7f0fbea38f0d1302d6a2d0ac4c741ed1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7f0fbea38f0d1302d6a2d0ac4c741ed1">&#9670;&nbsp;</a></span>bmp_image_get_height()</h2>
+<a id="ae0361503a56bc127cfdde1572666025a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0361503a56bc127cfdde1572666025a">&#9670;&nbsp;</a></span>bmp_image_get_height()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned int bmp_image_get_height </td>
+          <td class="memname">int bmp_image_get_height </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structbmp__image__t.html">bmp_image_t</a>&#160;</td>
           <td class="paramname"><em>image</em></td><td>)</td>
@@ -270,7 +300,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>set_pixel</b> (unsign
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">rgb_color_t bmp_image_get_pixel </td>
+          <td class="memname"><a class="el" href="libsurround_8h.html#a445e98b984d01365b2b9dea94e0ccc6b">rgb_color_t</a> bmp_image_get_pixel </td>
           <td>(</td>
           <td class="paramtype">uint32_t&#160;</td>
           <td class="paramname"><em>x</em>, </td>
@@ -308,14 +338,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>set_pixel</b> (unsign
 
 </div>
 </div>
-<a id="a3c67844981c073af4eb25de4ed7ae649"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c67844981c073af4eb25de4ed7ae649">&#9670;&nbsp;</a></span>bmp_image_get_width()</h2>
+<a id="ac9da1ee33f201d0f747ecbc2864cd8ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9da1ee33f201d0f747ecbc2864cd8ef">&#9670;&nbsp;</a></span>bmp_image_get_width()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned int bmp_image_get_width </td>
+          <td class="memname">int bmp_image_get_width </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structbmp__image__t.html">bmp_image_t</a>&#160;</td>
           <td class="paramname"><em>image</em></td><td>)</td>
@@ -564,7 +594,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>set_pixel</b> (unsign
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">rgb_color_t&#160;</td>
+          <td class="paramtype"><a class="el" href="libsurround_8h.html#a445e98b984d01365b2b9dea94e0ccc6b">rgb_color_t</a>&#160;</td>
           <td class="paramname"><em>color</em>, </td>
         </tr>
         <tr>

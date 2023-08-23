@@ -12,6 +12,8 @@
 #include <stdarg.h>
 #include <string.h>
 
+#include "macros.h"
+
 #define u8 uint8_t
 #define u16 uint16_t
 #define u32 uint32_t
@@ -42,7 +44,7 @@ typedef struct rgb_color{
 }rgb_color_t;
 
 typedef struct sur_bitmap{
-	sur_file_t fd; /// file descriptor of file it is loaded from, -1 if not loaded from file
+//	sur_file_t fd; /// file descriptor of file it is loaded from, -1 if not loaded from file
 	char *pathname; /// pathname of file it is loaded from, NULL if not loaded from file
 	uint32_t width; /// width of bitmap
 	uint32_t height; /// height of bitmap
@@ -50,25 +52,32 @@ typedef struct sur_bitmap{
 	uint32_t data_len; /// length of data array; calculated from width and height
 }sur_bitmap_t;
 
+typedef struct sur_image_extras{
+	int save_bpp; /// bits per pixel of image in file
+	sur_compression_t compression; ///compression algorithm
+	char* pathname;/// pathname of file it is loaded from, NULL if not loaded from file
+	sur_file_format_t format; /// file format of image
 
+}sur_image_extras_t;
 
 typedef struct sur_image{
-	sur_file_t fd; /// file descriptor of file it is loaded from, -1 if not loaded from file
-	char *pathname; /// pathname of file it is loaded from, NULL if not loaded from file
+//	sur_file_t fd; /// file descriptor of file it is loaded from, -1 if not loaded from file
+//	char *pathname; /// pathname of file it is loaded from, NULL if not loaded from file
 	uint32_t width; /// width of image
 	uint32_t height; /// height of image
 	// xres and yres are parameters for saving this to a file
 	uint32_t **data; /// where the pixels are stored, should be indexed with data[row][column]
+	sur_image_extras_t extras; /// pointer to struct containing info about saving to a file
 }sur_image_t;
 
-int create_window(surround_window_t *win/*params*/);
-int free_window(/*params*/);
+//int create_window(surround_window_t *win/*params*/);
+//int free_window(/*params*/);
 
-int drawer_init(/*params*/);
-int drawer_exit(/*params*/);
+//int drawer_init(/*params*/);
+//int drawer_exit(/*params*/);
 
-int map_window(/*params*/);
-int unmap_window(/*params*/);
+//int map_window(/*params*/);
+//int unmap_window(/*params*/);
 /**
 	@brief bool enum type; defines false as 0 and true as 1
 */
@@ -172,8 +181,7 @@ sur_image_t sur_image_init_from_file(const char* pathname);
  * @param filename name of file to store data in
  * @param filetype file format to store data in: TODO: list filetypes that work with it
  */
-int sur_image_save_to_file(sur_image_t image,uint32_t xres, uint32_t yres, int compression,
-		const char* filename, const char* filetype);
+int sur_image_save_to_file(sur_image_t image,uint32_t xres, uint32_t yres, char *filename);
 
 /*
  * @brief free sur_image_t
@@ -239,7 +247,8 @@ bmp_image_t create_bmp(const char* filename, uint32_t width, uint32_t height, ui
 static int sur_image_init_bmp_from_file(sur_image_t* image);
 	//nested function in sur_image_init_from_file
 
-
+int sur_image_save_bmp_to_file(sur_image_t image,uint32_t xres, uint32_t yres, char *filename);
+	//nested function in sur_image_save_to_file
 
 
 #include "ename.c.inc"
@@ -372,10 +381,12 @@ bmp_image_t create_bmp(const char* filename,unsigned int width, unsigned int hei
 
 sur_image_t sur_image_init(uint32_t width,uint32_t height){
 	sur_image_t image;
-	image.fd = -1;
 	image.width = width;
 	image.height = height;
-	image.pathname=NULL; // no file name, is not loaded from file
+	image.extras.pathname=NULL; // no file name, is not loaded from file
+	image.extras.format = SUR_FILE_FORMAT_BMP;// bmp is default file format for new images
+	image.extras.compression = SUR_NO_COMPRESSION;
+	image.extras.save_bpp = 24;
 	
 	image.data = malloc(height * sizeof(uint32_t*));
 	if(image.data == NULL)
@@ -392,17 +403,17 @@ sur_image_t sur_image_init(uint32_t width,uint32_t height){
 
 sur_image_t sur_image_init_from_file(const char* pathname){
 	sur_image_t image;
+
 	int fd = open(pathname,O_RDONLY);// open file for read only
 	if(fd == -1)
 		err_exit("open");
-	image.pathname = malloc(strlen(pathname)*sizeof(char));
-	// TODO: in the free function make sure to free this as well
 
-	if(!image.pathname)
+	image.extras.pathname = malloc(strlen(pathname)*sizeof(char));
+	if(image.extras.pathname == NULL)
 		err_exit("malloc");
 
-	image.fd = (sur_file_t)fd;
-	strcpy(image.pathname,pathname);
+	strcpy(image.extras.pathname,pathname);
+	printf("pathname is %s\n",image.extras.pathname);
 
 
 
@@ -411,7 +422,14 @@ sur_image_t sur_image_init_from_file(const char* pathname){
 	if(read(fd,buffer,2) == -1)
 		err_exit("read");
 	buffer[2]='\0';
-	if(!strcmp(buffer,"BM")){// is a .bmp file
+	if(!strcmp(buffer,"BM")){
+			// is a .bmp file
+
+		image.extras.format = SUR_FILE_FORMAT_BMP;
+
+		if(close(fd) == -1) 
+			err_exit("close");
+
 		printf("sur_image_init_from_file: %s is a .bmp file\n", pathname);
 		sur_image_init_bmp_from_file(&image);//TODO: add a return checker
 	}
@@ -423,22 +441,25 @@ sur_image_t sur_image_init_from_file(const char* pathname){
 	return image;
 }
 
-
+//only referenced by sur_image_init_from_file
 static int sur_image_init_bmp_from_file(sur_image_t* image){
-	int fd = (int)image->fd;
-	int data_offset;
-	int image_size;
-	int filesize;
+	int fd = open(image->extras.pathname,O_RDONLY);
+	if(fd == -1)
+		err_exit("open");
+
 	int calc_size;
+	int data_offset;
+	int filesize;
+	int image_size;
 	int offset;
+	int num_colors;
 	uint32_t temp;
 /*	uint32_t temp7;
 	uint32_t temp8;
 	uint32_t temp9;
 	*/
-					   // TODO: implement this
-					   // TODO: test this works
-		
+		if(lseek(fd,2,SEEK_SET) == -1)
+			err_exit("lseek");
 		if(read(fd,&filesize,4) == -1)// getting filesize
 			err_exit("read");
 		if(lseek(fd,4,SEEK_CUR) == -1)// unused area
@@ -471,6 +492,7 @@ static int sur_image_init_bmp_from_file(sur_image_t* image){
 								  //TODO: add compatibility with other values {1, 4, 8, 16, 24}
 			err_exit("read");
 
+		image->extras.save_bpp = temp;
 		//here temp is the bits per pixel
 
 		if(read(fd,&temp,4) == -1)
@@ -479,7 +501,18 @@ static int sur_image_init_bmp_from_file(sur_image_t* image){
 			// currently unused, TODO: implement compression and decompression algorithms
 
 		//here temp corresponds to a compression algorithm
-		
+		if(temp == 0)
+			image->extras.compression = SUR_NO_COMPRESSION;
+		else if(temp == 1)
+			image->extras.compression = SUR_COMPRESSION_RLE8;
+		else if(temp == 2)
+			image->extras.compression = SUR_COMPRESSION_RLE4;
+		else{
+			printf("error reading file on line %d\n",__LINE__);
+			exit(EXIT_FAILURE);
+		}
+
+
 		if(read(fd,&image_size,4) == -1)// image size in bytes of the data part of the file
 			err_exit("read");
 		calc_size = image->height * (image->width*3 + 4 - (image->width * 3) % 4);
@@ -495,11 +528,10 @@ static int sur_image_init_bmp_from_file(sur_image_t* image){
 
 
 
-		if(read(fd,&temp,4) == -1)//number of colors in image, important for color table
+		if(read(fd,&num_colors,4) == -1)//number of colors in image, important for color table
 								  //TODO: currently not implementation for this
 			err_exit("read");
 
-		//here temp is the number of colors in the image
 		
 		if(lseek(fd,4,SEEK_CUR) == -1)//unimportant
 			err_exit("lseek");
@@ -537,16 +569,122 @@ static int sur_image_init_bmp_from_file(sur_image_t* image){
 		}
 
 
-
+	if(close(fd) == -1)
+		err_exit("close");
 	return 0;
 }
-int sur_image_save_to_file(sur_image_t image,uint32_t xres, uint32_t yres, int compression,
-		const char* filename, const char* filetype){
-	int fd = open(image.pathname, O_RDWR);
+int sur_image_save_to_file(sur_image_t image,uint32_t xres, uint32_t yres, char *filename){
+	if(image.extras.format == SUR_FILE_FORMAT_BMP){
+		sur_image_save_bmp_to_file(image,xres,yres, filename);
+	}
+	else{
+		printf("image file format not recognized\n");
+	}
+	return 0;
+}
+
+int sur_image_save_bmp_to_file(sur_image_t image,uint32_t xres, uint32_t yres, char *filename){
+	//TODO:get to it
+	//TODO: implement different bpp and colortable
+	
+	int buf;
+	char signature[2] = "BM";
+	ssize_t written;
+	int offset;
+	int data_offset;
+
+	
+	int fd = open(filename,O_CREAT | O_TRUNC | O_RDWR, S_IRWXU | S_IRGRP | S_IROTH);
+		//open file, create if not exist with 744 perms
 	if(fd == -1)
 		err_exit("open");
-	// TODO: actually make this function do its intended purpose
-	if(close(fd))
-		err_exit("close");
+	
+	if(write(fd,signature,2) != 2)
+		err_exit("write");
+
+	//
+	
+	//TODO:put filesize here
+
+	//
+	
+	lseek(fd,10,SEEK_SET);//10 bytes from beginning of file
+	buf = 0x36;
+	if(write(fd,&buf,4)!= 4)//data offset
+		err_exit("write");
+	
+
+	buf = 40;
+	if(write(fd, &buf, 4) != 4)//size of infoheader
+		err_exit("write");
+
+	if(write(fd, &(image.width), 4) != 4)
+		err_exit("write");
+
+	
+	if(write(fd, &(image.height), 4) != 4)
+		err_exit("write");
+	
+	buf = 1;
+	if(write(fd, &buf, 2) != 2)
+		err_exit("write");
+
+	if(write(fd, &(image.extras.save_bpp), 2) != 2)
+		err_exit("write");
+
+	//
+	
+	//TODO: implement compression algorithms for bmp file format
+	buf = 0;
+	if(write(fd, &buf, 4) != 4)
+		err_exit("write");
+	//
+	if(image.extras.compression == SUR_NO_COMPRESSION){
+		buf = image.height * (image.width*3 + 4 - (image.width * 3) % 4);
+		if(write(fd, &buf, 4) != 4)
+			err_exit("write");
+	}	
+	else{
+		printf("error: no implementatino of compression");
+		exit(EXIT_FAILURE);
+	}
+	
+	buf = 10000;
+	if(write(fd,&buf,4) != 4)
+		err_exit("write");
+
+	if(write(fd,&buf,4) != 4)
+		err_exit("write");
+
+	buf = 0;//number of used colors
+	if(write(fd,&buf,4) != 4)
+		err_exit("write");
+	if(write(fd,&buf,4) != 4)
+		err_exit("write");
+	
+	//TODO: here would be the color table but that hasn't been implemented yet
+	
+	data_offset = 0x36;
+
+	//here for each pixel in the image, find the offset in the file the corresponds to the pixel
+	//and store the data there
+	
+	for(int i = 0; i < image.height; i++){//i is vertical position
+		for(int j = 0; j < image.width; j++){//j is horizontal position
+			offset = data_offset + 3*j + (image.height - i-1) * (3 * image.width + ((4*(image.width%4 !=0)) - 3*image.width%4));
+			lseek(fd,offset, SEEK_SET);
+			if(write(fd,&(image.data[i][j]),3) != 3)
+				err_exit("write");
+		}
+	}
+	return 0;
+}
+
+int sur_image_free(sur_image_t image){
+	if(image.extras.pathname != NULL)
+		free(image.extras.pathname);
+	for(int i=0;i<image.height;i++)
+		free(image.data[i]);
+	free(image.data);
 	return 0;
 }

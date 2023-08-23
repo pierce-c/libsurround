@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['usage_5ferr_14',['usage_err',['../libsurround_8h.html#afe962daccb7bdeb84f538e12bfd036d2',1,'libsurround.h']]]
+  ['pathname_17',['pathname',['../structsur__image__extras.html#a944d77637bfd646978a2dcb038a2e8bf',1,'sur_image_extras']]]
 ];
